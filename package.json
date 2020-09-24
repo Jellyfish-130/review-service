@@ -7,9 +7,13 @@
   "engines": {
     "node": ">=6.13.0"
   },
-  "scripts": {},
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "nodemon server/index.js"
+  },
   "dependencies": {
     "aws-sdk": "^2.759.0",
+    "express": "^4.17.1",
     "faker": "^5.1.0",
     "moment": "^2.29.0",
     "mongoose": "^5.10.6"
