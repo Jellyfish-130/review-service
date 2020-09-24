@@ -7,11 +7,16 @@
   "engines": {
     "node": ">=6.13.0"
   },
-  "scripts": {
-  },
+  "scripts": {},
   "dependencies": {
+    "aws-sdk": "^2.759.0",
+    "faker": "^5.1.0",
+    "moment": "^2.29.0",
+    "mongoose": "^5.10.6"
   },
   "devDependencies": {
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
+    "eslint": "^7.9.0",
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "eslint-plugin-react": "^7.21.1"
   }
 }
