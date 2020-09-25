@@ -7,8 +7,8 @@ const reviewSchema = mongoose.Schema ({
   image: String,
   dateNum: Number,
   dateStr: String,
-	review: String,
-})
+  review: String,
+});
 
 
 const Review = mongoose.model('Review', reviewSchema);
