@@ -8,6 +8,7 @@ const reviewSchema = mongoose.Schema ({
   dateNum: Number,
   dateStr: String,
   review: String,
+  roomId: Number, //This will be mongoose.ObjectId once the room model has been created
 });
 
 

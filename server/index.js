@@ -10,8 +10,10 @@ app.listen(port, () => {
 });
 
 
-app.get('/api/reviews', function (req, res) {
-  Review.find()
+app.get('/api/rooms/:roomId/reviews', function (req, res) {
+  Review.find({
+    roomId: req.params.roomId
+  })
     .sort( { dateNum: -1 } )
     .then((data) => {
       res.json(data);
