@@ -35,8 +35,15 @@ const createData = function (num) {
       dateNum: monthYear[i].dateNum,
       dateStr: monthYear[i].dateStr,
       review: reviews[Math.floor(Math.random() * 5)],
-      roomId: Math.floor(Math.random() * 5) + 1
+      roomId: Math.floor(Math.random() * 5) + 1,
+      cleanlinessRating: Math.floor(Math.random() * 2) + 4,
+      communicationRating: Math.floor(Math.random() * 2) + 4,
+      checkInRating: Math.floor(Math.random() * 2) + 4,
+      accuracyRating: Math.floor(Math.random() * 2) + 4,
+      locationRating: Math.floor(Math.random() * 2) + 4,
+      valueRating: Math.floor(Math.random() * 2) + 4
     };
+    data.totalRating = (data.cleanlinessRating + data.communicationRating + data.checkInRating + data.accuracyRating + data.locationRating + data.valueRating) / 6;
     const review = new Review(data);
     review.save((err, result) => {
       if (err) {
@@ -49,8 +56,6 @@ const createData = function (num) {
 };
 
 createData(50);
-
-// db.reviews.find({ }).sort( { dateNum : -1 } )
 
 
 
