@@ -2,10 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 const TopBar = (props) => {
-
   const Container = styled.div`
     display: flex;
-    width: 925px;
+    width: 1120px;
     padding: 10px 10px 10px 10px;
     justify-content: left;
   `;
@@ -26,13 +25,9 @@ const TopBar = (props) => {
 
   return (
     <Container className="topbar">
-      <StarIcon src="images/pink-star.jpg"/>
-      <Title>
-        {parseFloat(props.avgtotalRating).toFixed(2)}
-      </Title>
-      <Title>
-        ({props.numberOfReviews} reviews)
-      </Title>
+      <StarIcon src="images/pink-star.jpg" />
+      <Title>{parseFloat(props.avgtotalRating).toFixed(2)}</Title>
+      <Title>({props.numberOfReviews} reviews)</Title>
     </Container>
   );
 };

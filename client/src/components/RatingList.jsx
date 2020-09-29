@@ -5,21 +5,25 @@ import ProgressBar from './ProgressBar.jsx';
 const RatingList = (props) => {
   const Container = styled.div`
     display: flex;
+    width: 1120px;
+    max-height: 120px;
   `;
 
-  const ColumnOne = styled.div`
+  const AllRows = styled.div`
     display: flex;
     font-weight: 400;
+    flex-flow: column wrap;
     flex-direction: column;
     padding-top: 10px;
+    height: 150px;
   `;
-
-  const ColumnTwo = styled(ColumnOne)``;
 
   const Row = styled.div`
     display: flex;
-    width: 450px;
-    padding: 10px 10px 10px 10px;
+    width: 500px;
+    padding: 10px;
+    margin-right: 120px;
+    box-sizing: border-box;
     justify-content: space-between;
   `;
 
@@ -35,43 +39,50 @@ const RatingList = (props) => {
     align-items: center;
   `;
 
+  const categories = [
+    {
+      label: 'Cleanliness',
+      propName: 'avgcleanlinessRating',
+    },
+    {
+      label: 'Communication',
+      propName: 'avgcommunicationRating',
+    },
+    {
+      label: 'Check-In',
+      propName: 'avgcheckInRating',
+    },
+    {
+      label: 'Accuracy',
+      propName: 'avgaccuracyRating',
+    },
+    {
+      label: 'Location',
+      propName: 'avglocationRating',
+    },
+    {
+      label: 'Value',
+      propName: 'avgvalueRating',
+    },
+  ];
+
   return (
     <Container className="review-list-entry">
-      <ColumnOne>
-        <Row>
-          <Category>Cleanliness</Category>
-          <Rating>
-            <ProgressBar
-              completed={
-                (parseFloat(props.avgcleanlinessRating).toFixed(1) / 5) * 100
-              }
-            ></ProgressBar>
-            {parseFloat(props.avgcleanlinessRating).toFixed(1)}
-          </Rating>
-        </Row>
-        <Row>
-          <Category>Communication</Category>
-          <Rating>{parseFloat(props.avgcommunicationRating).toFixed(1)}</Rating>
-        </Row>
-        <Row>
-          <Category>Check-in</Category>
-          <Rating>{parseFloat(props.avgcheckInRating).toFixed(1)}</Rating>
-        </Row>
-      </ColumnOne>
-      <ColumnTwo>
-        <Row>
-          <Category>Accuracy</Category>
-          <Rating>{parseFloat(props.avgaccuracyRating).toFixed(1)}</Rating>
-        </Row>
-        <Row>
-          <Category>Location</Category>
-          <Rating>{parseFloat(props.avglocationRating).toFixed(1)}</Rating>
-        </Row>
-        <Row>
-          <Category>Value </Category>
-          <Rating>{parseFloat(props.avgvalueRating).toFixed(1)}</Rating>
-        </Row>
-      </ColumnTwo>
+      <AllRows>
+        {categories.map((category) => (
+          <Row>
+            <Category> {category.label} </Category>
+            <Rating>
+              <ProgressBar
+                completed={
+                  (parseFloat(props[category.propName]).toFixed(1) / 5) * 100
+                }
+              ></ProgressBar>
+              {parseFloat(props[category.propName]).toFixed(1)}
+            </Rating>
+          </Row>
+        ))}
+      </AllRows>
     </Container>
   );
 };

@@ -17,7 +17,6 @@ const ProgressBar = (props) => {
     text-align: right;
     border-radius: 2px;
   `;
-  console.log('Rendering');
 
   return (
     <BarContainer>
