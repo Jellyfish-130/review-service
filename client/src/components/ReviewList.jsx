@@ -1,13 +1,22 @@
 import React from 'react';
 import ReviewListEntry from './ReviewListEntry.jsx';
+import styled from 'styled-components';
 
 const ReviewList = (props) => {
+  const Container = styled.div`
+  display: flex;
+  width: 925px;
+  padding: 10px 10px 10px 10px;
+  flex-direction: row;
+  flex-wrap: wrap;
+`;
+
   return (
-    <div className="review-list">
+    <Container className="review-list">
       {props.reviewsDisplayed.map((review, i) => (
         <ReviewListEntry key={i} review={review}/>
       ))}
-    </div>
+    </Container>
   );
 };
 

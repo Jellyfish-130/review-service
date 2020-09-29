@@ -3,6 +3,7 @@ import $ from 'jquery';
 import RatingList from './RatingList.jsx';
 import ReviewList from './ReviewList.jsx';
 import TopBar from './TopBar.jsx';
+import styled from 'styled-components';
 
 const ratingKeys = [
   'cleanlinessRating',
@@ -81,9 +82,16 @@ class App extends React.Component {
         </button>
       );
     }
+    const AppContainer = styled.div`
+      display: flex;
+      color: rgb(34, 34, 34);
+      font-family: Circular, -apple-system, system-ui, Roboto;
+      align-items: center;
+      flex-direction: column;
+    `;
 
     return (
-      <div>
+      <AppContainer>
         < TopBar avgtotalRating={this.state.avgtotalRating} numberOfReviews= {this.state.numberOfReviews} />
         < RatingList {...{
           avgcleanlinessRating: this.state.avgcleanlinessRating,
@@ -96,7 +104,7 @@ class App extends React.Component {
         />
         < ReviewList reviewsDisplayed={this.state.reviewsDisplayed}/>
         {button}
-      </div>
+      </AppContainer>
     );
   }
 }
