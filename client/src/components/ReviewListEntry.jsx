@@ -5,12 +5,13 @@ const ReviewListEntry = (props) => {
 
   const Container = styled.div`
     display: flex;
-    width: 450px;
+    width: 460px;
   `;
 
   const AvatarNameDateAndReview = styled.div`
     display: flex;
     flex-direction: column;
+    padding: 20px 10px 10px 10px;
   `;
 
   const AvatarNameAndDate = styled.div`
@@ -24,36 +25,74 @@ const ReviewListEntry = (props) => {
     flex-direction: column;
   `;
 
-  const AverageRating = styled.div`
+  const Name = styled.div`
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+  `;
+
+  const Date = styled.div`
+    display: flex;
+    color: rgb(113, 113, 113);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+  `;
+
+  const AvatarContainer = styled.div`
+    padding: 3px 10px 3px 3px;
   `;
 
   const Avatar = styled.img.attrs(() => ({
     src: props.review.image,
   }))`
-    padding: 3px 6px 3px 3px;
     width: 57px;
     height: 60px;
     border-radius: 50%;
   `;
+
+  const AverageRating = styled.div`
+    display: flex;
+    font-size: 12px;
+    width: 200px;
+    font-weight: 600;
+    justify-content: flex-end;
+  `;
+
+  const Review = styled.div`
+    display: flex;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    justify-content: flex-end;
+  `;
   return (
     <Container className="review-list-entry">
       <AvatarNameDateAndReview>
-        <span><AvatarNameAndDate>
-          <span><Avatar src={props.review.image}/></span>
-          <span><NameAndDate>
-            <span>{props.review.username}</span>
-            <span>{props.review.dateStr}</span>
-          </NameAndDate></span>
-        </AvatarNameAndDate></span>
+
+        <AvatarNameAndDate>
+
+          <AvatarContainer>
+            <Avatar src={props.review.image}/>
+          </AvatarContainer>
+
+          <NameAndDate>
+            <Name>{props.review.username}</Name>
+            <Date>{props.review.dateStr}</Date>
+          </NameAndDate>
+
+        </AvatarNameAndDate>
 
         <AverageRating>
           {parseFloat(props.review.totalRating).toFixed(1)}
         </AverageRating>
-        <span>
+
+        <Review>
           {props.review.review}
-        </span>
+        </Review>
+
       </AvatarNameDateAndReview>
     </Container>
   );
