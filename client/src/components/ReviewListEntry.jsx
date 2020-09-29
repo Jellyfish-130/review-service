@@ -2,108 +2,144 @@ import React from 'react';
 import styled from 'styled-components';
 import ProgressBar from './ProgressBar.jsx';
 
-const ReviewListEntry = (props) => {
-  const Container = styled.div`
-    display: flex;
-    width: 500px;
-    justify-content: flex-start;
-    box-sizing: border-box;
-    padding: 10px;
-  `;
+class ReviewListEntry extends React.Component {
+  constructor(props) {
+    super(props);
 
-  const AvatarNameDateAndReview = styled.div`
-    display: flex;
-    flex-direction: column;
-  `;
+    this.state = {
+      restOfText: '',
+      hideReadMoreButton: false,
+    };
 
-  const AvatarNameAndDate = styled.div`
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-  `;
+    this.handleReadMore = this.handleReadMore.bind(this);
+  }
 
-  const NameAndDate = styled.div`
-    display: flex;
-    flex-direction: column;
-  `;
+  componentDidMount() {
+    this.setState({
+      hideReadMoreButton: this.props.review.review.length <= 180,
+    });
+  }
 
-  const Name = styled.div`
-    display: flex;
-    flex-direction: column;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 20px;
-  `;
+  handleReadMore(text) {
+    this.setState({
+      restOfText: text,
+      hideReadMoreButton: true,
+    });
+  }
 
-  const Date = styled.div`
-    display: flex;
-    color: rgb(113, 113, 113);
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 20px;
-  `;
+  render() {
+    const Container = styled.div`
+      display: flex;
+      width: 500px;
+      justify-content: flex-start;
+      box-sizing: border-box;
+      padding: 10px;
+    `;
 
-  const AvatarContainer = styled.div`
-    padding: 3px 10px 3px 3px;
-  `;
+    const AvatarNameDateAndReview = styled.div`
+      display: flex;
+      flex-direction: column;
+    `;
 
-  const Avatar = styled.img.attrs(() => ({
-    src: props.review.image,
-  }))`
-    width: 57px;
-    height: 60px;
-    border-radius: 50%;
-  `;
+    const AvatarNameAndDate = styled.div`
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+    `;
 
-  const AverageRating = styled.div`
-    display: flex;
-    font-size: 12px;
-    width: 200px;
-    font-weight: 600;
-    justify-content: flex-start;
-    align-items: center;
-  `;
+    const NameAndDate = styled.div`
+      display: flex;
+      flex-direction: column;
+    `;
 
-  const Review = styled.div`
-    display: flex;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
-    justify-content: flex-start;
-  `;
+    const Name = styled.div`
+      display: flex;
+      flex-direction: column;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 20px;
+    `;
 
-  return (
-    <Container className="review-list-entry">
-      <AvatarNameDateAndReview>
-        <AvatarNameAndDate>
-          <AvatarContainer>
-            <Avatar src={props.review.image} />
-          </AvatarContainer>
+    const Date = styled.div`
+      display: flex;
+      color: rgb(113, 113, 113);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+    `;
 
-          <NameAndDate>
-            <Name>{props.review.username}</Name>
-            <Date>{props.review.dateStr}</Date>
-          </NameAndDate>
-        </AvatarNameAndDate>
+    const AvatarContainer = styled.div`
+      padding: 3px 10px 3px 3px;
+    `;
 
-        <AverageRating>
-          <ProgressBar
-            completed={
-              (parseFloat(props.review.totalRating).toFixed(1) / 5) * 100
-            }
-          ></ProgressBar>
-          {parseFloat(props.review.totalRating).toFixed(1)}
-        </AverageRating>
+    const Avatar = styled.img.attrs(() => ({
+      src: this.props.review.image,
+    }))`
+      width: 57px;
+      height: 60px;
+      border-radius: 50%;
+    `;
 
-        <Review>
-          {props.review.review.length <= 180
-            ? props.review.review
-            : props.review.review.substring(0, 180) + '...'}
-        </Review>
-        {props.review.review.length > 180 ? 'read more' : null}
-      </AvatarNameDateAndReview>
-    </Container>
-  );
-};
+    const AverageRating = styled.div`
+      display: flex;
+      font-size: 12px;
+      width: 200px;
+      font-weight: 600;
+      justify-content: flex-start;
+      align-items: center;
+    `;
+
+    const Review = styled.div`
+      display: flex;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      justify-content: flex-start;
+    `;
+
+    const ReadMore = styled.div`
+      display: flex;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 24px;
+      text-decoration: underline;
+      justify-content: flex-start;
+    `;
+    return (
+      <Container className="review-list-entry">
+        <AvatarNameDateAndReview>
+          <AvatarNameAndDate>
+            <AvatarContainer>
+              <Avatar src={this.props.review.image} />
+            </AvatarContainer>
+
+            <NameAndDate>
+              <Name>{this.props.review.username}</Name>
+              <Date>{this.props.review.dateStr}</Date>
+            </NameAndDate>
+          </AvatarNameAndDate>
+
+          <AverageRating>
+            <ProgressBar
+              completed={
+                (parseFloat(this.props.review.totalRating).toFixed(1) / 5) * 100
+              }
+            ></ProgressBar>
+            {parseFloat(this.props.review.totalRating).toFixed(1)}
+          </AverageRating>
+
+          <Review>
+            {this.state.hideReadMoreButton
+              ? this.props.review.review
+              : this.props.review.review.substring(0, 180) + '...'}
+          </Review>
+          {!this.state.hideReadMoreButton ? (
+            <ReadMore on>read more</ReadMore>
+          ) : null}
+        </AvatarNameDateAndReview>
+      </Container>
+    );
+  }
+}
 
 export default ReviewListEntry;

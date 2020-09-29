@@ -12,7 +12,7 @@ const ratingKeys = [
   'accuracyRating',
   'locationRating',
   'valueRating',
-  'totalRating'
+  'totalRating',
 ];
 
 class App extends React.Component {
@@ -30,7 +30,7 @@ class App extends React.Component {
       avgvalueRating: 0,
       avgtotalRating: 0,
       reviewsDisplayed: [],
-      showAllReviews: false
+      showAllReviews: false,
     };
   }
 
@@ -53,22 +53,21 @@ class App extends React.Component {
           }
           const average = total / newReviews.length;
           this.setState({
-            [`avg${ratingKey}`]: average
+            [`avg${ratingKey}`]: average,
           });
         }
         this.setState({
           reviews: newReviews,
           numberOfReviews: newReviews.length,
-          reviewsDisplayed: newReviews.slice(0, 6)
-
+          reviewsDisplayed: newReviews.slice(0, 6),
         });
-      }
+      },
     });
   }
 
   handleShowAllReviews() {
     this.setState({
-      showAllReviews: true
+      showAllReviews: true,
     });
   }
 
@@ -76,8 +75,11 @@ class App extends React.Component {
     let button = null;
     if (this.state.reviews.length > 6) {
       button = (
-        <button onClick={() => {
-          handleShowAllReviews()}}>
+        <button
+          onClick={() => {
+            handleShowAllReviews();
+          }}
+        >
           Show all {this.state.numberOfReviews} reviews
         </button>
       );
@@ -92,17 +94,21 @@ class App extends React.Component {
 
     return (
       <AppContainer>
-        < TopBar avgtotalRating={this.state.avgtotalRating} numberOfReviews= {this.state.numberOfReviews} />
-        < RatingList {...{
-          avgcleanlinessRating: this.state.avgcleanlinessRating,
-          avgcommunicationRating: this.state.avgcommunicationRating,
-          avgcheckInRating: this.state.avgcheckInRating,
-          avgaccuracyRating: this.state.avgaccuracyRating,
-          avglocationRating: this.state.avglocationRating,
-          avgvalueRating: this.state.avgvalueRating
-        }}
+        <TopBar
+          avgtotalRating={this.state.avgtotalRating}
+          numberOfReviews={this.state.numberOfReviews}
         />
-        < ReviewList reviewsDisplayed={this.state.reviewsDisplayed}/>
+        <RatingList
+          {...{
+            avgcleanlinessRating: this.state.avgcleanlinessRating,
+            avgcommunicationRating: this.state.avgcommunicationRating,
+            avgcheckInRating: this.state.avgcheckInRating,
+            avgaccuracyRating: this.state.avgaccuracyRating,
+            avglocationRating: this.state.avglocationRating,
+            avgvalueRating: this.state.avgvalueRating,
+          }}
+        />
+        <ReviewList reviewsDisplayed={this.state.reviewsDisplayed} />
         {button}
       </AppContainer>
     );
