@@ -35,7 +35,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getAllReviews(1);
+    this.getAllReviews(2);
   }
 
   getAllReviews(roomId) {
@@ -72,18 +72,6 @@ class App extends React.Component {
   }
 
   render() {
-    let button = null;
-    if (this.state.reviews.length > 6) {
-      button = (
-        <button
-          onClick={() => {
-            handleShowAllReviews();
-          }}
-        >
-          Show all {this.state.numberOfReviews} reviews
-        </button>
-      );
-    }
     const AppContainer = styled.div`
       display: flex;
       color: rgb(34, 34, 34);
@@ -91,6 +79,40 @@ class App extends React.Component {
       align-items: center;
       flex-direction: column;
     `;
+
+    const ButtonContainer = styled.div`
+      display: flex;
+      width: 1120px;
+      justify-content: flex-start;
+      padding: 10px;
+    `;
+
+    const ShowAllButton = styled.div`
+      display: flex;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 13px 23px 13px 23px;
+      border-width: 1px;
+      border-color: rgb(34, 34, 34);
+      border-style: solid;
+      border-radius: 8px;
+      justify-content: start;
+    `;
+
+    let button = null;
+    if (this.state.reviews.length > 6) {
+      button = (
+        <ButtonContainer>
+          <ShowAllButton
+            onClick={() => {
+              handleShowAllReviews();
+            }}
+          >
+            Show all {this.state.numberOfReviews} reviews
+          </ShowAllButton>
+        </ButtonContainer>
+      );
+    }
 
     return (
       <AppContainer>
