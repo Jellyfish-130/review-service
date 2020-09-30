@@ -1,12 +1,12 @@
 import React from 'react';
 import $ from 'jquery';
+import styled from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
+
+import TopBar from './TopBar.jsx';
 import RatingList from './RatingList.jsx';
 import ReviewList from './ReviewList.jsx';
-import TopBar from './TopBar.jsx';
-import styled from 'styled-components';
 import Modal from './Modal.jsx';
-
-import { createGlobalStyle } from 'styled-components';
 
 const ratingKeys = [
   'cleanlinessRating',
@@ -18,13 +18,20 @@ const ratingKeys = [
   'totalRating',
 ];
 
+export const ButtonContainer = styled.div`
+  display: flex;
+  width: 1120px;
+  padding: 10px;
+  justify-content: start;
+  flex-direction: row;
+`;
+
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       reviews: [],
-      numberOfReviews: 0,
       avgcleanlinessRating: 0,
       avgcommunicationRating: 0,
       avgcheckInRating: 0,
@@ -33,7 +40,6 @@ class App extends React.Component {
       avgvalueRating: 0,
       avgtotalRating: 0,
       reviewsDisplayed: [],
-
       modalVisible: false,
     };
 
@@ -64,7 +70,6 @@ class App extends React.Component {
         }
         this.setState({
           reviews: newReviews,
-          numberOfReviews: newReviews.length,
           reviewsDisplayed: newReviews.slice(0, 6),
         });
       },
@@ -92,15 +97,7 @@ class App extends React.Component {
       flex-direction: column;
     `;
 
-    const ButtonContainer = styled.div`
-      display: flex;
-      width: 1120px;
-      justify-content: flex-start;
-      padding: 10px;
-    `;
-
     const ShowAllButton = styled.div`
-      display: flex;
       font-size: 16px;
       font-weight: 600;
       padding: 13px 23px 13px 23px;
@@ -108,38 +105,27 @@ class App extends React.Component {
       border-color: rgb(34, 34, 34);
       border-style: solid;
       border-radius: 8px;
-      justify-content: start;
-    `;
+      cursor: pointer;
 
-    let button = null;
-    if (this.state.reviews.length > 6) {
-      button = (
-        <ButtonContainer>
-          <ShowAllButton
-            onClick={() => {
-              this.toggleModalVisibility();
-            }}
-          >
-            Show all {this.state.numberOfReviews} reviews
-          </ShowAllButton>
-        </ButtonContainer>
-      );
-    }
+      &:hover {
+        background-color: rgba(232, 232, 232, 0.7);
+      }
+    `;
 
     return (
       <AppContainer>
         <GlobalStyle />
-        <Modal
-          visible={this.state.modalVisible}
-          close={() => {
-            this.toggleModalVisibility();
-          }}
-          reviews={this.state.reviews}
-        ></Modal>
-
+        {this.state.modalVisible ? (
+          <Modal
+            close={() => {
+              this.toggleModalVisibility();
+            }}
+            reviews={this.state.reviews}
+          ></Modal>
+        ) : null}
         <TopBar
           avgtotalRating={this.state.avgtotalRating}
-          numberOfReviews={this.state.numberOfReviews}
+          numberOfReviews={this.state.reviews.length}
         />
         <RatingList
           {...{
@@ -152,7 +138,17 @@ class App extends React.Component {
           }}
         />
         <ReviewList reviewsDisplayed={this.state.reviewsDisplayed} />
-        {button}
+        {this.state.reviews.length > 6 ? (
+          <ButtonContainer>
+            <ShowAllButton
+              onClick={() => {
+                this.toggleModalVisibility();
+              }}
+            >
+              Show all {this.state.reviews.length} reviews
+            </ShowAllButton>
+          </ButtonContainer>
+        ) : null}
       </AppContainer>
     );
   }

@@ -2,6 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import ProgressBar from './ProgressBar.jsx';
 
+export const AvatarNameDateAndReview = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 class ReviewListEntry extends React.Component {
   constructor(props) {
     super(props);
@@ -28,11 +33,6 @@ class ReviewListEntry extends React.Component {
       padding: 10px;
     `;
 
-    const AvatarNameDateAndReview = styled.div`
-      display: flex;
-      flex-direction: column;
-    `;
-
     const AvatarNameAndDate = styled.div`
       display: flex;
       align-items: center;
@@ -44,6 +44,17 @@ class ReviewListEntry extends React.Component {
       flex-direction: column;
     `;
 
+    const AvatarContainer = styled.div`
+      padding: 3px 10px 3px 3px;
+    `;
+
+    const Avatar = styled.img.attrs(() => ({
+      src: this.props.review.image,
+    }))`
+      width: 57px;
+      height: 60px;
+      border-radius: 50%;
+    `;
     const Name = styled.div`
       display: flex;
       flex-direction: column;
@@ -58,18 +69,6 @@ class ReviewListEntry extends React.Component {
       font-size: 14px;
       font-weight: 400;
       line-height: 20px;
-    `;
-
-    const AvatarContainer = styled.div`
-      padding: 3px 10px 3px 3px;
-    `;
-
-    const Avatar = styled.img.attrs(() => ({
-      src: this.props.review.image,
-    }))`
-      width: 57px;
-      height: 60px;
-      border-radius: 50%;
     `;
 
     const AverageRating = styled.div`
@@ -97,6 +96,7 @@ class ReviewListEntry extends React.Component {
       text-decoration: underline;
       justify-content: flex-start;
     `;
+
     return (
       <Container className="review-list-entry">
         <AvatarNameDateAndReview>
@@ -129,7 +129,6 @@ class ReviewListEntry extends React.Component {
             <ReadMore
               onClick={() => {
                 this.handleReadMore();
-                console.log('HEllo');
               }}
             >
               Read more

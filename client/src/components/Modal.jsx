@@ -1,6 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
+export const Close = styled.div`
+  display: flex;
+  cursor: pointer;
+`;
+
 class Modal extends React.Component {
   constructor(props) {
     super(props);
@@ -10,7 +15,6 @@ class Modal extends React.Component {
     const visible = this.props.visible;
 
     const Container = styled.div`
-      ${!visible ? 'display: none;' : ''}
       position: absolute;
       width: 100vw;
       height: 100vh;
@@ -19,7 +23,6 @@ class Modal extends React.Component {
     `;
 
     const Content = styled.div`
-      ${!visible ? 'display: none;' : ''}
       position: absolute;
       width: 1000px;
       height: 700px;
@@ -35,21 +38,33 @@ class Modal extends React.Component {
       margin-left: -500px;
     `;
 
-    const Header = styled.div`
-      height: 72px;
+    const CloseContainer = styled.div`
+      display: flex;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+
+      &:hover {
+        background-color: rgba(232, 232, 232, 0.7);
+      }
     `;
 
     return (
       <>
         <Container />
         <Content>
-          <Header
-            onClick={() => {
-              this.props.close();
-            }}
-          >
-            Close me
-          </Header>
+          <CloseContainer>
+            <Close
+              onClick={() => {
+                this.props.close();
+              }}
+            >
+              ✕
+            </Close>
+          </CloseContainer>
         </Content>
       </>
     );

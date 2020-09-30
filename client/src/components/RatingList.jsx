@@ -2,6 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import ProgressBar from './ProgressBar.jsx';
 
+export const Row = styled.div`
+  display: flex;
+  width: 500px;
+  padding: 10px;
+  margin-right: 120px;
+  box-sizing: border-box;
+  justify-content: space-between;
+`;
+
 const RatingList = (props) => {
   const Container = styled.div`
     display: flex;
@@ -16,15 +25,6 @@ const RatingList = (props) => {
     flex-direction: column;
     padding-top: 10px;
     height: 150px;
-  `;
-
-  const Row = styled.div`
-    display: flex;
-    width: 500px;
-    padding: 10px;
-    margin-right: 120px;
-    box-sizing: border-box;
-    justify-content: space-between;
   `;
 
   const Category = styled.div`
