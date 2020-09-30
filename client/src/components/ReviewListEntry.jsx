@@ -2,28 +2,25 @@ import React from 'react';
 import styled from 'styled-components';
 import ProgressBar from './ProgressBar.jsx';
 
+export const AvatarNameDateAndReview = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 class ReviewListEntry extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      restOfText: '',
-      hideReadMoreButton: false,
+      readMoreButton: props.review.review.length > 180,
     };
 
     this.handleReadMore = this.handleReadMore.bind(this);
   }
 
-  componentDidMount() {
+  handleReadMore() {
     this.setState({
-      hideReadMoreButton: this.props.review.review.length <= 180,
-    });
-  }
-
-  handleReadMore(text) {
-    this.setState({
-      restOfText: text,
-      hideReadMoreButton: true,
+      readMoreButton: false,
     });
   }
 
@@ -34,11 +31,6 @@ class ReviewListEntry extends React.Component {
       justify-content: flex-start;
       box-sizing: border-box;
       padding: 10px;
-    `;
-
-    const AvatarNameDateAndReview = styled.div`
-      display: flex;
-      flex-direction: column;
     `;
 
     const AvatarNameAndDate = styled.div`
@@ -52,6 +44,17 @@ class ReviewListEntry extends React.Component {
       flex-direction: column;
     `;
 
+    const AvatarContainer = styled.div`
+      padding: 3px 10px 3px 3px;
+    `;
+
+    const Avatar = styled.img.attrs(() => ({
+      src: this.props.review.image,
+    }))`
+      width: 57px;
+      height: 60px;
+      border-radius: 50%;
+    `;
     const Name = styled.div`
       display: flex;
       flex-direction: column;
@@ -66,18 +69,6 @@ class ReviewListEntry extends React.Component {
       font-size: 14px;
       font-weight: 400;
       line-height: 20px;
-    `;
-
-    const AvatarContainer = styled.div`
-      padding: 3px 10px 3px 3px;
-    `;
-
-    const Avatar = styled.img.attrs(() => ({
-      src: this.props.review.image,
-    }))`
-      width: 57px;
-      height: 60px;
-      border-radius: 50%;
     `;
 
     const AverageRating = styled.div`
@@ -105,6 +96,7 @@ class ReviewListEntry extends React.Component {
       text-decoration: underline;
       justify-content: flex-start;
     `;
+
     return (
       <Container className="review-list-entry">
         <AvatarNameDateAndReview>
@@ -129,12 +121,18 @@ class ReviewListEntry extends React.Component {
           </AverageRating>
 
           <Review>
-            {this.state.hideReadMoreButton
-              ? this.props.review.review
-              : this.props.review.review.substring(0, 180) + '...'}
+            {this.state.readMoreButton
+              ? this.props.review.review.substring(0, 180) + '...'
+              : this.props.review.review}
           </Review>
-          {!this.state.hideReadMoreButton ? (
-            <ReadMore on>read more</ReadMore>
+          {this.state.readMoreButton ? (
+            <ReadMore
+              onClick={() => {
+                this.handleReadMore();
+              }}
+            >
+              Read more
+            </ReadMore>
           ) : null}
         </AvatarNameDateAndReview>
       </Container>

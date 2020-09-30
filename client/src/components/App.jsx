@@ -1,9 +1,12 @@
 import React from 'react';
 import $ from 'jquery';
+import styled from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
+
+import TopBar from './TopBar.jsx';
 import RatingList from './RatingList.jsx';
 import ReviewList from './ReviewList.jsx';
-import TopBar from './TopBar.jsx';
-import styled from 'styled-components';
+import Modal from './Modal.jsx';
 
 const ratingKeys = [
   'cleanlinessRating',
@@ -15,13 +18,20 @@ const ratingKeys = [
   'totalRating',
 ];
 
+export const ButtonContainer = styled.div`
+  display: flex;
+  width: 1120px;
+  padding: 10px;
+  justify-content: start;
+  flex-direction: row;
+`;
+
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       reviews: [],
-      numberOfReviews: 0,
       avgcleanlinessRating: 0,
       avgcommunicationRating: 0,
       avgcheckInRating: 0,
@@ -30,12 +40,14 @@ class App extends React.Component {
       avgvalueRating: 0,
       avgtotalRating: 0,
       reviewsDisplayed: [],
-      showAllReviews: false,
+      modalVisible: false,
     };
+
+    this.toggleModalVisibility = this.toggleModalVisibility.bind(this);
   }
 
   componentDidMount() {
-    this.getAllReviews(1);
+    this.getAllReviews(2);
   }
 
   getAllReviews(roomId) {
@@ -58,45 +70,62 @@ class App extends React.Component {
         }
         this.setState({
           reviews: newReviews,
-          numberOfReviews: newReviews.length,
           reviewsDisplayed: newReviews.slice(0, 6),
         });
       },
     });
   }
 
-  handleShowAllReviews() {
+  toggleModalVisibility() {
     this.setState({
-      showAllReviews: true,
+      modalVisible: !this.state.modalVisible,
     });
   }
 
   render() {
-    let button = null;
-    if (this.state.reviews.length > 6) {
-      button = (
-        <button
-          onClick={() => {
-            handleShowAllReviews();
-          }}
-        >
-          Show all {this.state.numberOfReviews} reviews
-        </button>
-      );
-    }
+    const GlobalStyle = createGlobalStyle`
+      body {
+        margin: 0;
+      }
+    `;
     const AppContainer = styled.div`
       display: flex;
+      position: relative;
       color: rgb(34, 34, 34);
       font-family: Circular, -apple-system, system-ui, Roboto;
       align-items: center;
       flex-direction: column;
     `;
 
+    const ShowAllButton = styled.div`
+      font-size: 16px;
+      font-weight: 600;
+      padding: 13px 23px 13px 23px;
+      border-width: 1px;
+      border-color: rgb(34, 34, 34);
+      border-style: solid;
+      border-radius: 8px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgba(232, 232, 232, 0.7);
+      }
+    `;
+
     return (
       <AppContainer>
+        <GlobalStyle />
+        {this.state.modalVisible ? (
+          <Modal
+            close={() => {
+              this.toggleModalVisibility();
+            }}
+            reviews={this.state.reviews}
+          ></Modal>
+        ) : null}
         <TopBar
           avgtotalRating={this.state.avgtotalRating}
-          numberOfReviews={this.state.numberOfReviews}
+          numberOfReviews={this.state.reviews.length}
         />
         <RatingList
           {...{
@@ -109,7 +138,17 @@ class App extends React.Component {
           }}
         />
         <ReviewList reviewsDisplayed={this.state.reviewsDisplayed} />
-        {button}
+        {this.state.reviews.length > 6 ? (
+          <ButtonContainer>
+            <ShowAllButton
+              onClick={() => {
+                this.toggleModalVisibility();
+              }}
+            >
+              Show all {this.state.reviews.length} reviews
+            </ShowAllButton>
+          </ButtonContainer>
+        ) : null}
       </AppContainer>
     );
   }
