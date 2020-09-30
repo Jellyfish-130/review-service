@@ -7,23 +7,15 @@ class ReviewListEntry extends React.Component {
     super(props);
 
     this.state = {
-      restOfText: '',
-      hideReadMoreButton: false,
+      readMoreButton: props.review.review.length > 180,
     };
 
     this.handleReadMore = this.handleReadMore.bind(this);
   }
 
-  componentDidMount() {
+  handleReadMore() {
     this.setState({
-      hideReadMoreButton: this.props.review.review.length <= 180,
-    });
-  }
-
-  handleReadMore(text) {
-    this.setState({
-      restOfText: text,
-      hideReadMoreButton: true,
+      readMoreButton: false,
     });
   }
 
@@ -129,12 +121,19 @@ class ReviewListEntry extends React.Component {
           </AverageRating>
 
           <Review>
-            {this.state.hideReadMoreButton
-              ? this.props.review.review
-              : this.props.review.review.substring(0, 180) + '...'}
+            {this.state.readMoreButton
+              ? this.props.review.review.substring(0, 180) + '...'
+              : this.props.review.review}
           </Review>
-          {!this.state.hideReadMoreButton ? (
-            <ReadMore on>read more</ReadMore>
+          {this.state.readMoreButton ? (
+            <ReadMore
+              onClick={() => {
+                this.handleReadMore();
+                console.log('HEllo');
+              }}
+            >
+              Read more
+            </ReadMore>
           ) : null}
         </AvatarNameDateAndReview>
       </Container>
