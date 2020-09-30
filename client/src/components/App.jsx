@@ -4,6 +4,9 @@ import RatingList from './RatingList.jsx';
 import ReviewList from './ReviewList.jsx';
 import TopBar from './TopBar.jsx';
 import styled from 'styled-components';
+import Modal from './Modal.jsx';
+
+import { createGlobalStyle } from 'styled-components';
 
 const ratingKeys = [
   'cleanlinessRating',
@@ -30,8 +33,11 @@ class App extends React.Component {
       avgvalueRating: 0,
       avgtotalRating: 0,
       reviewsDisplayed: [],
-      showAllReviews: false,
+
+      modalVisible: false,
     };
+
+    this.toggleModalVisibility = this.toggleModalVisibility.bind(this);
   }
 
   componentDidMount() {
@@ -65,15 +71,21 @@ class App extends React.Component {
     });
   }
 
-  handleShowAllReviews() {
+  toggleModalVisibility() {
     this.setState({
-      showAllReviews: true,
+      modalVisible: !this.state.modalVisible,
     });
   }
 
   render() {
+    const GlobalStyle = createGlobalStyle`
+      body {
+        margin: 0;
+      }
+    `;
     const AppContainer = styled.div`
       display: flex;
+      position: relative;
       color: rgb(34, 34, 34);
       font-family: Circular, -apple-system, system-ui, Roboto;
       align-items: center;
@@ -105,7 +117,7 @@ class App extends React.Component {
         <ButtonContainer>
           <ShowAllButton
             onClick={() => {
-              handleShowAllReviews();
+              this.toggleModalVisibility();
             }}
           >
             Show all {this.state.numberOfReviews} reviews
@@ -116,6 +128,15 @@ class App extends React.Component {
 
     return (
       <AppContainer>
+        <GlobalStyle />
+        <Modal
+          visible={this.state.modalVisible}
+          close={() => {
+            this.toggleModalVisibility();
+          }}
+          reviews={this.state.reviews}
+        ></Modal>
+
         <TopBar
           avgtotalRating={this.state.avgtotalRating}
           numberOfReviews={this.state.numberOfReviews}
