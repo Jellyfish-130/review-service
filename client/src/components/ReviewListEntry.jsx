@@ -25,6 +25,8 @@ class ReviewListEntry extends React.Component {
   }
 
   render() {
+    const isModal = this.props.isModal;
+
     const Container = styled.div`
       display: flex;
       width: 500px;

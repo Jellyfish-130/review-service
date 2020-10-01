@@ -22,7 +22,7 @@ const TopBar = (props) => {
     display: flex;
     height: ${props.isModal ? '40' : '26'}px;
     width: ${props.isModal ? '400' : '1120'}px;
-    padding: 10px 10px 10px 10px;
+    padding: ${props.isModal ? '10px 10px 10px 10px' : '10px 10px 10px 10px'};
     justify-content: left;
   `;
 

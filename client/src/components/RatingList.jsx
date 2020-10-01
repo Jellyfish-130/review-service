@@ -6,7 +6,7 @@ export const Row = styled.div`
   display: flex;
   width: ${(props) => (props.isModal ? '340' : '500')}px;
   padding: 10px;
-  margin-right: 120px;
+  margin-right: ${(props) => (props.isModal ? '0' : '120')}px;
   box-sizing: border-box;
   justify-content: space-between;
 `;
@@ -16,8 +16,8 @@ const RatingList = (props) => {
 
   const Container = styled.div`
     display: flex;
-    width: 1120px;
-    max-height: 120px;
+    width: ${props.isModal ? '300' : '1120'}px;
+    max-height: ${props.isModal ? '400' : '120'}px;
   `;
 
   const AllRows = styled.div`
@@ -79,6 +79,7 @@ const RatingList = (props) => {
                 completed={
                   (parseFloat(props[category.propName]).toFixed(1) / 5) * 100
                 }
+                isModal={isModal}
               ></ProgressBar>
               {parseFloat(props[category.propName]).toFixed(1)}
             </Rating>

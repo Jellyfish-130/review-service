@@ -25,20 +25,56 @@ class Modal extends React.Component {
       background-color: black;
     `;
 
-    const Content = styled.div`
+    const Everything = styled.div`
+      display: flex;
+      flex-direction: column;
       position: absolute;
-      width: 1000px;
-      height: 700px;
-      padding: 24px;
       box-sizing: border-box;
       background-color: white;
+      width: 1000px;
+      height: 700px;
       border-radius: 12px;
       box-shadow: rgba(0, 0, 0, 0.28) 0px 8px 28px;
-
       top: 50%;
       margin-top: -320px;
       left: 50%;
       margin-left: -500px;
+    `;
+
+    const Header = styled.div`
+      display: flex;
+      width: 950px;
+      height: 72px;
+      padding: 0px 24px 0px 24px;
+      justify-content: start;
+      align-items: center;
+      flex-direction: row;
+    `;
+
+    const Content = styled.div`
+      display: flex;
+      padding: 0px 0px 0px 24px;
+      box-sizing: border-box;
+      justify-content: space-between;
+      flex-direction: row;
+      height: 90%;
+    `;
+
+    const LeftContainer = styled.div`
+      display: flex;
+      width: 350px;
+      height: 600px;
+      justify-content: start;
+      flex-direction: column;
+    `;
+
+    const RightContainer = styled(LeftContainer)`
+      display: flex;
+      width: 550px;
+      height: 630px;
+      overflow-y: scroll;
+      justify-content: end;
+      flex-direction: column;
     `;
 
     const CloseContainer = styled.div`
@@ -58,20 +94,30 @@ class Modal extends React.Component {
     return (
       <>
         <Container />
-        <Content>
-          <CloseContainer>
-            <Close
-              onClick={() => {
-                this.props.close();
-              }}
-            >
-              ✕
-            </Close>
-          </CloseContainer>
-          <TopBar isModal={true} {...this.props}></TopBar>
-          <RatingList isModal={true} {...this.props}></RatingList>
-          <ReviewList isModal={true} {...this.props}></ReviewList>
-        </Content>
+        <Everything>
+          <Header>
+            <CloseContainer>
+              <Close
+                onClick={() => {
+                  this.props.close();
+                }}
+              >
+                ✕
+              </Close>
+            </CloseContainer>
+          </Header>
+
+          <Content>
+            <LeftContainer>
+              <TopBar isModal={true} {...this.props}></TopBar>
+              <RatingList isModal={true} {...this.props}></RatingList>
+            </LeftContainer>
+
+            <RightContainer>
+              <ReviewList isModal={true} {...this.props}></ReviewList>
+            </RightContainer>
+          </Content>
+        </Everything>
       </>
     );
   }
