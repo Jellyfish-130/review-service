@@ -44,17 +44,6 @@ class ReviewListEntry extends React.Component {
       flex-direction: column;
     `;
 
-    const AvatarContainer = styled.div`
-      padding: 3px 10px 3px 3px;
-    `;
-
-    const Avatar = styled.img.attrs(() => ({
-      src: this.props.review.image,
-    }))`
-      width: 57px;
-      height: 60px;
-      border-radius: 50%;
-    `;
     const Name = styled.div`
       display: flex;
       flex-direction: column;
@@ -69,6 +58,18 @@ class ReviewListEntry extends React.Component {
       font-size: 14px;
       font-weight: 400;
       line-height: 20px;
+    `;
+
+    const AvatarContainer = styled.div`
+      padding: 3px 10px 3px 3px;
+    `;
+
+    const Avatar = styled.img.attrs(() => ({
+      src: this.props.review.image,
+    }))`
+      width: 57px;
+      height: 60px;
+      border-radius: 50%;
     `;
 
     const AverageRating = styled.div`

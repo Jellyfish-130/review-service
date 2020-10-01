@@ -1,5 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import TopBar from './TopBar.jsx';
+import RatingList from './RatingList.jsx';
+import ReviewList from './ReviewList.jsx';
 
 export const Close = styled.div`
   display: flex;
@@ -40,15 +43,15 @@ class Modal extends React.Component {
 
     const CloseContainer = styled.div`
       display: flex;
-      width: 40px;
-      height: 40px;
+      width: 33px;
+      height: 33px;
       border-radius: 50%;
       justify-content: center;
       align-items: center;
       flex-direction: row;
 
       &:hover {
-        background-color: rgba(232, 232, 232, 0.7);
+        background-color: rgba(232, 232, 232, 0.5);
       }
     `;
 
@@ -65,6 +68,9 @@ class Modal extends React.Component {
               ✕
             </Close>
           </CloseContainer>
+          <TopBar isModal={true} {...this.props}></TopBar>
+          <RatingList isModal={true} {...this.props}></RatingList>
+          <ReviewList isModal={true} {...this.props}></ReviewList>
         </Content>
       </>
     );

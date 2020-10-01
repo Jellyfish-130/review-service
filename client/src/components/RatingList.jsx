@@ -4,7 +4,7 @@ import ProgressBar from './ProgressBar.jsx';
 
 export const Row = styled.div`
   display: flex;
-  width: 500px;
+  width: ${(props) => (props.isModal ? '340' : '500')}px;
   padding: 10px;
   margin-right: 120px;
   box-sizing: border-box;
@@ -12,6 +12,8 @@ export const Row = styled.div`
 `;
 
 const RatingList = (props) => {
+  const isModal = props.isModal;
+
   const Container = styled.div`
     display: flex;
     width: 1120px;
@@ -24,12 +26,12 @@ const RatingList = (props) => {
     flex-flow: column wrap;
     flex-direction: column;
     padding-top: 10px;
-    height: 150px;
+    height: ${props.isModal ? '250' : '150'}px;
   `;
 
   const Category = styled.div`
-    font-size: 16px;
-    font-weight: 400;
+    font-size: ${props.isModal ? '14' : '16'}px;
+    font-weight: ${props.isModal ? '300' : '400'};
   `;
 
   const Rating = styled.div`
@@ -70,7 +72,7 @@ const RatingList = (props) => {
     <Container className="review-list-entry">
       <AllRows>
         {categories.map((category) => (
-          <Row>
+          <Row isModal={isModal}>
             <Category> {category.label} </Category>
             <Rating>
               <ProgressBar

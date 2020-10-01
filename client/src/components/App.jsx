@@ -108,7 +108,7 @@ class App extends React.Component {
       cursor: pointer;
 
       &:hover {
-        background-color: rgba(232, 232, 232, 0.7);
+        background-color: rgba(232, 232, 232, 0.5);
       }
     `;
 
@@ -120,23 +120,14 @@ class App extends React.Component {
             close={() => {
               this.toggleModalVisibility();
             }}
-            reviews={this.state.reviews}
+            {...this.state}
           ></Modal>
         ) : null}
         <TopBar
           avgtotalRating={this.state.avgtotalRating}
-          numberOfReviews={this.state.reviews.length}
+          reviews={this.state.reviews}
         />
-        <RatingList
-          {...{
-            avgcleanlinessRating: this.state.avgcleanlinessRating,
-            avgcommunicationRating: this.state.avgcommunicationRating,
-            avgcheckInRating: this.state.avgcheckInRating,
-            avgaccuracyRating: this.state.avgaccuracyRating,
-            avglocationRating: this.state.avglocationRating,
-            avgvalueRating: this.state.avgvalueRating,
-          }}
-        />
+        <RatingList {...this.state} />
         <ReviewList reviewsDisplayed={this.state.reviewsDisplayed} />
         {this.state.reviews.length > 6 ? (
           <ButtonContainer>
