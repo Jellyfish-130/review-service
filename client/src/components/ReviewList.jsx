@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 const ReviewList = (props) => {
   const isModal = props.isModal;
+
   let reviews = props.reviewsDisplayed;
   if (isModal) {
     reviews = props.reviews;

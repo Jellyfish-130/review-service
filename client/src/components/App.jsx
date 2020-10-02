@@ -86,13 +86,16 @@ class App extends React.Component {
     const GlobalStyle = createGlobalStyle`
       body {
         margin: 0;
+        font-family: Circular, -apple-system, system-ui, Roboto;
+      }
+      input {
+        font-family: Circular, -apple-system, system-ui, Roboto;
       }
     `;
     const AppContainer = styled.div`
       display: flex;
       position: relative;
       color: rgb(34, 34, 34);
-      font-family: Circular, -apple-system, system-ui, Roboto;
       align-items: center;
       flex-direction: column;
     `;
@@ -108,7 +111,7 @@ class App extends React.Component {
       cursor: pointer;
 
       &:hover {
-        background-color: rgba(232, 232, 232, 0.5);
+        background-color: rgb(247, 247, 247);
       }
     `;
 

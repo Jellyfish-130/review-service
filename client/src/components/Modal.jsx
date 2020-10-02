@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import TopBar from './TopBar.jsx';
 import RatingList from './RatingList.jsx';
 import ReviewList from './ReviewList.jsx';
+import Search from './Search.jsx';
 
 export const Close = styled.div`
   display: flex;
@@ -12,10 +13,37 @@ export const Close = styled.div`
 class Modal extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      search: '',
+    };
+
+    this.handleSearch = this.handleSearch.bind(this);
+  }
+
+  handleSearch(input) {
+    this.setState({
+      search: input,
+    });
   }
 
   render() {
-    const visible = this.props.visible;
+    const reviews = this.props.reviews;
+    console.log('Reviews', reviews);
+    const search = this.state.search;
+
+    let searchFiltered = reviews;
+    if (search) {
+      searchFiltered = [];
+
+      for (let i = 0; i < reviews.length; i++) {
+        const review = reviews[i];
+        console.log('Review', review);
+        if (review.review.toLowerCase().includes(search.toLowerCase())) {
+          searchFiltered.push(review);
+        }
+      }
+    }
 
     const Container = styled.div`
       position: absolute;
@@ -87,7 +115,7 @@ class Modal extends React.Component {
       flex-direction: row;
 
       &:hover {
-        background-color: rgba(232, 232, 232, 0.5);
+        background-color: rgb(247, 247, 247);
       }
     `;
 
@@ -114,7 +142,12 @@ class Modal extends React.Component {
             </LeftContainer>
 
             <RightContainer>
-              <ReviewList isModal={true} {...this.props}></ReviewList>
+              <Search handleSearch={this.handleSearch}></Search>
+              <ReviewList
+                isModal={true}
+                {...this.props}
+                reviews={searchFiltered}
+              ></ReviewList>
             </RightContainer>
           </Content>
         </Everything>
