@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 const Review = require('../database/index');
 
@@ -9,16 +10,17 @@ app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
 });
 
+app.get('/rooms/*', function (req, res) {
+  res.setHeader('content-type', 'text/html');
+  res.sendFile(path.resolve(__dirname + '/../client/dist/index.html'));
+});
 
 app.get('/api/rooms/:roomId/reviews', function (req, res) {
   Review.find({
-    roomId: req.params.roomId
+    roomId: req.params.roomId,
   })
-    .sort( { dateNum: -1 } )
+    .sort({ dateNum: -1 })
     .then((data) => {
       res.json(data);
     });
 });
-
-
-
