@@ -1,7 +1,7 @@
 module.exports = {
   clearMocks: true,
 
-  collectCoverageFrom: ['src/**/*.{js,jsx,mjs}'],
+  collectCoverageFrom: ['client/src/**/*.{js,jsx,mjs}'],
 
   coverageDirectory: 'coverage',
 
@@ -11,7 +11,10 @@ module.exports = {
 
   testEnvironment: 'jsdom',
 
-  testMatch: ['**/__tests__/**/*.js?(x)', '**/?(*.)+(spec|test).js?(x)'],
+  testMatch: [
+    'client/test/**/__tests__/**/*.js?(x)',
+    '**/?(*.)+(spec|test).js?(x)',
+  ],
 
   testPathIgnorePatterns: ['\\\\node_modules\\\\'],
 

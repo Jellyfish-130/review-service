@@ -1,10 +1,83 @@
 import React from 'react';
 import styled from 'styled-components';
+
+// Components
 import ProgressBar from './ProgressBar.jsx';
+
+const Container = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  padding: 10px;
+  width: 500px;
+`;
 
 export const AvatarNameDateAndReview = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+const AvatarNameAndDate = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const NameAndDate = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Name = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+`;
+
+const Date = styled.div`
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: rgb(113, 113, 113);
+`;
+
+const AvatarContainer = styled.div`
+  padding: 3px 10px 3px 3px;
+`;
+
+const Avatar = styled.img.attrs((props) => ({
+  src: props.src,
+}))`
+  width: 57px;
+  height: 60px;
+  border-radius: 50%;
+`;
+
+const AverageRating = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 12px;
+  width: 200px;
+  font-weight: 600;
+`;
+
+const Review = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+`;
+
+const ReadMore = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-decoration: underline;
 `;
 
 class ReviewListEntry extends React.Component {
@@ -25,77 +98,7 @@ class ReviewListEntry extends React.Component {
   }
 
   render() {
-    const Container = styled.div`
-      display: flex;
-      width: 500px;
-      justify-content: flex-start;
-      box-sizing: border-box;
-      padding: 10px;
-    `;
-
-    const AvatarNameAndDate = styled.div`
-      display: flex;
-      align-items: center;
-      flex-direction: row;
-    `;
-
-    const NameAndDate = styled.div`
-      display: flex;
-      flex-direction: column;
-    `;
-
-    const AvatarContainer = styled.div`
-      padding: 3px 10px 3px 3px;
-    `;
-
-    const Avatar = styled.img.attrs(() => ({
-      src: this.props.review.image,
-    }))`
-      width: 57px;
-      height: 60px;
-      border-radius: 50%;
-    `;
-    const Name = styled.div`
-      display: flex;
-      flex-direction: column;
-      font-size: 16px;
-      font-weight: 600;
-      line-height: 20px;
-    `;
-
-    const Date = styled.div`
-      display: flex;
-      color: rgb(113, 113, 113);
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 20px;
-    `;
-
-    const AverageRating = styled.div`
-      display: flex;
-      font-size: 12px;
-      width: 200px;
-      font-weight: 600;
-      justify-content: flex-start;
-      align-items: center;
-    `;
-
-    const Review = styled.div`
-      display: flex;
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 24px;
-      justify-content: flex-start;
-    `;
-
-    const ReadMore = styled.div`
-      display: flex;
-      font-size: 16px;
-      font-weight: 600;
-      line-height: 24px;
-      text-decoration: underline;
-      justify-content: flex-start;
-    `;
+    const isModal = this.props.isModal;
 
     return (
       <Container className="review-list-entry">
@@ -121,11 +124,11 @@ class ReviewListEntry extends React.Component {
           </AverageRating>
 
           <Review>
-            {this.state.readMoreButton
-              ? this.props.review.review.substring(0, 180) + '...'
-              : this.props.review.review}
+            {this.props.search || !this.state.readMoreButton
+              ? this.props.review.review
+              : this.props.review.review.substring(0, 180) + '...'}
           </Review>
-          {this.state.readMoreButton ? (
+          {!this.props.search && this.state.readMoreButton ? (
             <ReadMore
               onClick={() => {
                 this.handleReadMore();
