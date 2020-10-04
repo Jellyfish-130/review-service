@@ -9,8 +9,8 @@ const Container = styled.div`
   ${(props) => (props.isModal ? 'flex-direction: column;' : null)}
   justify-content: space-between;
   flex-wrap: wrap;
-  width: ${(props) => (props.isModal ? '500' : '1120')}px;
-  padding: 10px 10px 10px 10px;
+  width: 100%;
+  padding: 10px 0px;
   @media (max-width: 1120px) {
     flex-direction: column;
   }

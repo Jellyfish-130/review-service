@@ -25,14 +25,15 @@ const GlobalStyle = createGlobalStyle`
 const AppContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left: 11%;
+  margin-right: 11%;
 `;
 
 export const ButtonContainer = styled.div`
   display: flex;
   justify-content: start;
   padding: 10px;
+  width: 100%;
 `;
 
 const ShowAllButton = styled.div`
@@ -46,6 +47,13 @@ const ShowAllButton = styled.div`
   cursor: pointer;
   &:hover {
     background-color: rgb(247, 247, 247);
+  }
+
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: 800px) {
+    width: 100%;
   }
 `;
 

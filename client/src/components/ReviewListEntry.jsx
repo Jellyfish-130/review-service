@@ -10,8 +10,11 @@ const Container = styled.div`
   display: flex;
   justify-content: flex-start;
   box-sizing: border-box;
-  padding: 10px;
-  width: 500px;
+  padding: 10px 0px;
+  width: 40%;
+  @media (max-width: 1120px) {
+    width: 100%;
+  }
 `;
 
 export const AvatarNameDateAndReview = styled.div`

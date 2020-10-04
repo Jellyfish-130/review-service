@@ -7,6 +7,10 @@ import ProgressBar from './ProgressBar.jsx';
 const Container = styled.div`
   display: flex;
   max-height: ${(props) => (props.isModal ? '400' : '120')}px;
+
+  @media (max-width: 800px) {
+    display: none;
+  }
 `;
 
 const AllRows = styled.div`
@@ -28,7 +32,7 @@ export const Row = styled.div`
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
-  padding: 10px;
+  padding: 10px 0px;
   max-width: 500px;
 `;
 
