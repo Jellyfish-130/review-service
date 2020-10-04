@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 // Components
 import TopBar from './TopBar.jsx';
@@ -7,12 +7,40 @@ import RatingList from './RatingList.jsx';
 import ReviewList from './ReviewList.jsx';
 import Search from './Search.jsx';
 
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0.6;
+  }
+`;
+
 const BlackBackground = styled.div`
   position: absolute;
   width: 100vw;
   height: 100vh;
   background-color: rgb(34, 34, 34);
   opacity: 0.6;
+
+  animation-name: ${fadeIn};
+  animation-timing-function: ease-in;
+  animation-duration: 0.5s;
+`;
+
+const slideUp = keyframes`
+  0% {
+    margin-left: -500px;
+    margin-top: 0px;
+    opacity: 0;
+  }
+
+  100% {
+    margin-left: -500px;
+    margin-top: -340px;
+    opacity: 1;
+  }
 `;
 
 const Container = styled.div`
@@ -28,6 +56,10 @@ const Container = styled.div`
   margin-top: -340px;
   left: 50%;
   margin-left: -500px;
+
+  animation-name: ${slideUp};
+  animation-timing-function: ease-in;
+  animation-duration: 0.5s;
 `;
 
 const Header = styled.div`

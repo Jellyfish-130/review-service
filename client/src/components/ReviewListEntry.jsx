@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+import Highlighter from 'react-highlight-words';
 import styled from 'styled-components';
 
 // Components
@@ -64,16 +66,13 @@ const AverageRating = styled.div`
 `;
 
 const Review = styled.div`
-  display: flex;
-  justify-content: flex-start;
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
 `;
 
-const ReadMore = styled.div`
-  display: flex;
-  justify-content: flex-start;
+const ReadMore = styled.span`
+  white-space: nowrap;
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
@@ -113,7 +112,6 @@ class ReviewListEntry extends React.Component {
               <Date>{this.props.review.dateStr}</Date>
             </NameAndDate>
           </AvatarNameAndDate>
-
           <AverageRating>
             <ProgressBar
               completed={
@@ -123,19 +121,33 @@ class ReviewListEntry extends React.Component {
             {parseFloat(this.props.review.totalRating).toFixed(1)}
           </AverageRating>
 
-          <Review>
-            {this.props.search || !this.state.readMoreButton
-              ? this.props.review.review
-              : this.props.review.review.substring(0, 180) + '...'}
-          </Review>
-          {!this.props.search && this.state.readMoreButton ? (
-            <ReadMore
-              onClick={() => {
-                this.handleReadMore();
-              }}
-            >
-              Read more
-            </ReadMore>
+          {this.props.search ? (
+            <Review>
+              <Highlighter
+                searchWords={[this.props.search]}
+                autoEscape={true}
+                textToHighlight={this.props.review.review}
+              />
+            </Review>
+          ) : null}
+
+          {!this.props.search ? (
+            <Review>
+              {this.state.readMoreButton ? (
+                <>
+                  {this.props.review.review.substring(0, 180) + '... '}
+                  <ReadMore
+                    onClick={() => {
+                      this.handleReadMore();
+                    }}
+                  >
+                    read more
+                  </ReadMore>
+                </>
+              ) : (
+                this.props.review.review
+              )}
+            </Review>
           ) : null}
         </AvatarNameDateAndReview>
       </Container>

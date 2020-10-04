@@ -2,12 +2,14 @@
 
 > Project description
 
+We built a replica of an Airbnb listing by splitting up the 4 main components: photo-gallery, calender, reviews, and more places to stay. We not only replicated the functionalities of the components, but also styled everything to be nearly identical to Airbnb's stylings.
+
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+- https://github.com/Bookable-130/photo-gallery-service
+- https://github.com/Bookable-130/calendar-service
+- https://github.com/Bookable-130/review-service
+- https://github.com/Bookable-130/more-places-service
 
 ## Table of Contents
 
@@ -19,26 +21,40 @@
 
 > Some usage instructions
 
-- Endpoint: api/reviews
-- Endpoint expects no parameters
+To get the review component, run http://localhost:3003/rooms/:roomId/reviews with the corresponding roomId.
+
+API endpoints:
+
+- Endpoint: /api/rooms/:roomId/reviews
 - HTTP method: GET
+
+Shape of data:
+
 - Example response:
-{ _id: 5f6ce6ef88c01f0cd4fb285c,
-  username: 'Ruby',
+  { \_id: 5f77756fe4123b1d8db62729,
+  username: 'Damon',
   image:
-   'https://bookable-hrsf130-photos.s3.us-east-2.amazonaws.com/female-1.jpg',
-  dateNum: 1598380527,
-  dateStr: 'August 2020',
+  'https://bookable-hrsf130-photos.s3.us-east-2.amazonaws.com/male-8.jpg',
+  dateNum: 1588704367,
+  dateStr: 'May 2020',
   review:
-   'Laboriosam iste ipsam tempore ut rerum. Eveniet quibusdam sit quasi sed sunt enim explicabo cumque. Beatae voluptas est. Molestiae labore accusamus reiciendis facilis. Voluptatem sed consectetur cum sit.',
-  __v: 0 }
+  'Minima provident aut maxime fugiat non nihil incidunt. Laboriosam tempore veritatis asperiores nostrum provident. Tempora eius eligendi temporibus tempora porro qui quas.\n \rModi enim consequatur illo enim. Repellat in numquam quidem exercitationem ipsam magnam ea. Enim ratione odit eligendi mollitia natus ut perferendis. At placeat incidunt repellendus temporibus similique et. Cupiditate sapiente quos quia.\n \rConsequatur et ut provident at et eos eveniet. Enim sunt dolorum quo officiis eos velit voluptate harum quisquam. Voluptas ut ea. Aliquid et quam consequatur error ad. Ut dolorem magni.',
+  roomId: 2,
+  cleanlinessRating: 4,
+  communicationRating: 5,
+  checkInRating: 4,
+  accuracyRating: 5,
+  locationRating: 5,
+  valueRating: 4,
+  totalRating: 4.5,
+  \_\_v: 0 }
 
 ## Requirements
 
-An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
-
 - Node 6.13.0
-- etc
+- NPM
+- MongoDB
+- Web browser
 
 ## Development
 
@@ -46,8 +62,11 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 
 From within the root directory:
 
-```sh
-npm install -g webpack
-npm install
-```
+- npm install
 
+### Running the application
+
+- Run MongoDB: mongod --dbpath data
+- Run Mongo: mongo
+- Run Webpack: npm run build:dev
+- Run Express server:npm run start:dev

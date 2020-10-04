@@ -4,8 +4,6 @@ import styled from 'styled-components';
 const Container = styled.div`
   display: flex;
   justify-content: left;
-  width: ${(props) => (props.isModal ? '400' : '1120')}px;
-  height: ${(props) => (props.isModal ? '40' : '26')}px;
   padding: ${(props) =>
     props.isModal ? '10px 10px 10px 10px' : '10px 10px 10px 10px'};
 `;

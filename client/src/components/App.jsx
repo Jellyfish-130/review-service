@@ -25,13 +25,13 @@ const GlobalStyle = createGlobalStyle`
 const AppContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  margin-left: 10%;
+  margin-right: 10%;
 `;
 
 export const ButtonContainer = styled.div`
   display: flex;
   justify-content: start;
-  width: 1120px;
   padding: 10px;
 `;
 
