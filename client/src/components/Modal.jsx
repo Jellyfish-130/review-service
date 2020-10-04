@@ -19,6 +19,8 @@ const fadeIn = keyframes`
 
 const BlackBackground = styled.div`
   position: absolute;
+  top: 0px;
+  left: 0px;
   width: 100vw;
   height: 100vh;
   background-color: rgb(34, 34, 34);
@@ -47,15 +49,19 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
-  width: 1000px;
-  height: 700px;
+  left: 50%;
+  margin-left: -570px;
+  top: 50%;
+  margin-top: -400px;
+  width: 1140px;
+  height: 800px;
+  // top: 5%;
+  // left: 5%;
+  // width: 90%;
+  // height: 90%;
   background-color: white;
   border-radius: 12px;
   box-shadow: rgba(0, 0, 0, 0.28) 0px 8px 28px;
-  top: 50%;
-  margin-top: -340px;
-  left: 50%;
-  margin-left: -500px;
 
   animation-name: ${slideUp};
   animation-timing-function: ease-in;

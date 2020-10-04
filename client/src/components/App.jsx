@@ -123,8 +123,31 @@ class App extends React.Component {
 
   render() {
     return (
-      <AppContainer>
-        <GlobalStyle />
+      <>
+        <AppContainer>
+          <GlobalStyle />
+
+          <TopBar
+            avgtotalRating={this.state.avgtotalRating}
+            reviewsLength={this.state.reviews.length}
+          />
+
+          <RatingList {...this.state} />
+
+          <ReviewList reviewsDisplayed={this.state.reviewsDisplayed} />
+
+          {this.state.reviews.length > 6 ? (
+            <ButtonContainer>
+              <ShowAllButton
+                onClick={() => {
+                  this.toggleModalVisibility();
+                }}
+              >
+                Show all {this.state.reviews.length} reviews
+              </ShowAllButton>
+            </ButtonContainer>
+          ) : null}
+        </AppContainer>
 
         {this.state.modalVisible ? (
           <Modal
@@ -134,28 +157,7 @@ class App extends React.Component {
             {...this.state}
           ></Modal>
         ) : null}
-
-        <TopBar
-          avgtotalRating={this.state.avgtotalRating}
-          reviewsLength={this.state.reviews.length}
-        />
-
-        <RatingList {...this.state} />
-
-        <ReviewList reviewsDisplayed={this.state.reviewsDisplayed} />
-
-        {this.state.reviews.length > 6 ? (
-          <ButtonContainer>
-            <ShowAllButton
-              onClick={() => {
-                this.toggleModalVisibility();
-              }}
-            >
-              Show all {this.state.reviews.length} reviews
-            </ShowAllButton>
-          </ButtonContainer>
-        ) : null}
-      </AppContainer>
+      </>
     );
   }
 }
