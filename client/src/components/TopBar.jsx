@@ -14,7 +14,7 @@ export const Title = styled.div`
 `;
 
 export const StarIcon = styled.img.attrs(() => ({
-  src: '/images/pink-star.jpg',
+  src: '/images/pink-star.png',
 }))`
   width: ${(props) => (props.isModal ? '30' : '20')}px;
   height: ${(props) => (props.isModal ? '30' : '20')}px;
