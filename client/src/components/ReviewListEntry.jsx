@@ -10,10 +10,15 @@ const Container = styled.div`
   display: flex;
   justify-content: flex-start;
   box-sizing: border-box;
-  padding: 10px 0px;
-  width: 40%;
+  padding: 10px 0px 20px 0px;
+  width: ${(props) => (props.isModal ? '100%' : '40%')};
   @media (max-width: 1120px) {
     width: 100%;
+  }
+
+  @media (max-width: 800px) {
+    ${(props) =>
+      !props.isModal && props.isLatterEntries ? 'display: none;' : null}
   }
 `;
 
@@ -102,8 +107,10 @@ class ReviewListEntry extends React.Component {
   render() {
     const isModal = this.props.isModal;
 
+    const isLatterEntries = this.props.entryIndex > 2;
+
     return (
-      <Container className="review-list-entry">
+      <Container isModal={isModal} isLatterEntries={isLatterEntries}>
         <AvatarNameDateAndReview>
           <AvatarNameAndDate>
             <AvatarContainer>

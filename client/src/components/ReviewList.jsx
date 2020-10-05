@@ -25,10 +25,11 @@ const ReviewList = (props) => {
   }
 
   return (
-    <Container className="review-list" isModal={isModal}>
+    <Container isModal={isModal}>
       {reviews.map((review, i) => (
         <ReviewListEntry
           key={i}
+          entryIndex={i}
           review={review}
           isModal={isModal}
           search={props.search}

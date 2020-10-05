@@ -23,8 +23,11 @@ const BlackBackground = styled.div`
   left: 0px;
   width: 100vw;
   height: 100vh;
-  background-color: rgb(34, 34, 34);
-  opacity: 0.6;
+  background-color: rgb(34, 34, 34, 0.6);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   animation-name: ${fadeIn};
   animation-timing-function: ease-in;
@@ -33,39 +36,37 @@ const BlackBackground = styled.div`
 
 const slideUp = keyframes`
   0% {
-    margin-left: -500px;
-    margin-top: 0px;
+    bottom: -300px;
     opacity: 0;
   }
 
   100% {
-    margin-left: -500px;
-    margin-top: -340px;
+    bottom: 0px;
     opacity: 1;
   }
 `;
 
 const Container = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
-  position: absolute;
-  left: 50%;
-  margin-left: -570px;
-  top: 50%;
-  margin-top: -400px;
-  width: 1140px;
-  height: 800px;
-  // top: 5%;
-  // left: 5%;
-  // width: 90%;
-  // height: 90%;
   background-color: white;
   border-radius: 12px;
   box-shadow: rgba(0, 0, 0, 0.28) 0px 8px 28px;
+  width: 1140px;
+  height: calc(100% - 80px);
+  @media (max-width: 1220px) {
+    width: calc(100% - 80px);
+  }
+  @media (max-width: 730px) {
+    width: 100%;
+    height: 100%;
+    border-radius: 0px;
+  }
 
   animation-name: ${slideUp};
   animation-timing-function: ease-in;
-  animation-duration: 0.5s;
+  animation-duration: 0.3s;
 `;
 
 const Header = styled.div`
@@ -100,20 +101,37 @@ const Content = styled.div`
   box-sizing: border-box;
   padding: 0px 0px 0px 24px;
   height: 630px;
+
+  @media (max-width: 1220px) {
+    flex-direction: column;
+  }
 `;
 
 const LeftContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: start;
-  width: 350px;
-  height: 630px;
+  width: 40%;
+  height: 100%;
+
+  @media (max-width: 450px) {
+    width: 100%;
+    height: 30%;
+  }
+
+  @media (max-width: 1220px) {
+    width: 100%;
+  }
 `;
 
 const RightContainer = styled(LeftContainer)`
   justify-content: end;
-  width: 550px;
+  width: 60%;
   overflow-y: scroll;
+
+  @media (max-width: 1220px) {
+    width: 100%;
+  }
 `;
 
 class Modal extends React.Component {
@@ -150,8 +168,7 @@ class Modal extends React.Component {
     }
 
     return (
-      <>
-        <BlackBackground />
+      <BlackBackground>
         <Container>
           <Header>
             <CloseContainer>
@@ -182,7 +199,7 @@ class Modal extends React.Component {
             </RightContainer>
           </Content>
         </Container>
-      </>
+      </BlackBackground>
     );
   }
 }

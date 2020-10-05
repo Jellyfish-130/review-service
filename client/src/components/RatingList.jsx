@@ -7,25 +7,28 @@ import ProgressBar from './ProgressBar.jsx';
 const Container = styled.div`
   display: flex;
   max-height: ${(props) => (props.isModal ? '400' : '120')}px;
-
-  @media (max-width: 800px) {
-    display: none;
-  }
 `;
 
 const AllRows = styled.div`
   display: flex;
   font-weight: 400;
-  flex-direction: row;
+  flex-direction: ${(props) => (props.isModal ? 'column' : 'row')};
   width: 100%;
-  justify-content: space-between;
-  padding-top: 10px;
+  ${(props) => (props.isModal ? null : 'justify-content: space-between')};
   height: ${(props) => (props.isModal ? '250' : '150')}px;
+
+  ${(props) =>
+    props.isModal
+      ? '@media (max-width: 1120px) {flex-direction: row;}'
+      : '@media (max-width: 800px) {display: none;}'};
 `;
 
 const CategorySubcontainer = styled.div`
-  width: 40%;
-  min-width: 300px;
+  width: 100%;
+
+  @media (max-width: 1120px) {
+    width: 100%;
+  }
 `;
 
 export const Row = styled.div`
@@ -33,7 +36,7 @@ export const Row = styled.div`
   justify-content: space-between;
   box-sizing: border-box;
   padding: 10px 0px;
-  max-width: 500px;
+  max-width: 100%;
 `;
 
 const Category = styled.div`
@@ -79,7 +82,7 @@ const RatingList = (props) => {
   const isModal = props.isModal;
 
   return (
-    <Container className="review-list-entry" isModal={isModal}>
+    <Container isModal={isModal}>
       <AllRows isModal={isModal}>
         <CategorySubcontainer>
           {[0, 1, 2].map((index) => {

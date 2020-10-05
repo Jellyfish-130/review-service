@@ -32,7 +32,6 @@ const AppContainer = styled.div`
 export const ButtonContainer = styled.div`
   display: flex;
   justify-content: start;
-  padding: 10px;
   width: 100%;
 `;
 
@@ -82,6 +81,8 @@ class App extends React.Component {
       avglocationRating: 0,
       avgvalueRating: 0,
       avgtotalRating: 0,
+
+      numShown: 6,
     };
 
     this.toggleModalVisibility = this.toggleModalVisibility.bind(this);
@@ -109,7 +110,7 @@ class App extends React.Component {
         }
         this.setState({
           reviews: responseData,
-          reviewsDisplayed: responseData.slice(0, 6),
+          reviewsDisplayed: responseData.slice(0, this.state.numShown),
         });
       },
     });
@@ -136,7 +137,7 @@ class App extends React.Component {
 
           <ReviewList reviewsDisplayed={this.state.reviewsDisplayed} />
 
-          {this.state.reviews.length > 6 ? (
+          {this.state.reviews.length > this.state.numShown ? (
             <ButtonContainer>
               <ShowAllButton
                 onClick={() => {

@@ -4,8 +4,6 @@ import styled from 'styled-components';
 const Container = styled.div`
   display: flex;
   justify-content: left;
-  padding: ${(props) =>
-    props.isModal ? '10px 10px 10px 10px' : '10px 10px 10px 10px'};
 `;
 
 export const Title = styled.div`
@@ -26,7 +24,7 @@ const TopBar = (props) => {
   const isModal = props.isModal;
 
   return (
-    <Container className="topbar">
+    <Container>
       <StarIcon isModal={isModal} />
       <Title isModal={isModal}>
         {parseFloat(props.avgtotalRating).toFixed(2)} ({props.reviewsLength}{' '}
