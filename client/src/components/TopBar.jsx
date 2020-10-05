@@ -4,10 +4,7 @@ import styled from 'styled-components';
 const Container = styled.div`
   display: flex;
   justify-content: left;
-  width: ${(props) => (props.isModal ? '400' : '1120')}px;
-  height: ${(props) => (props.isModal ? '40' : '26')}px;
-  padding: ${(props) =>
-    props.isModal ? '10px 10px 10px 10px' : '10px 10px 10px 10px'};
+  padding-bottom: 20px;
 `;
 
 export const Title = styled.div`
@@ -17,7 +14,7 @@ export const Title = styled.div`
 `;
 
 export const StarIcon = styled.img.attrs(() => ({
-  src: '/images/pink-star.jpg',
+  src: '/images/pink-star.png',
 }))`
   width: ${(props) => (props.isModal ? '30' : '20')}px;
   height: ${(props) => (props.isModal ? '30' : '20')}px;
@@ -28,7 +25,7 @@ const TopBar = (props) => {
   const isModal = props.isModal;
 
   return (
-    <Container className="topbar">
+    <Container>
       <StarIcon isModal={isModal} />
       <Title isModal={isModal}>
         {parseFloat(props.avgtotalRating).toFixed(2)} ({props.reviewsLength}{' '}

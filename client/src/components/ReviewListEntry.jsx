@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+import Highlighter from 'react-highlight-words';
 import styled from 'styled-components';
 
 // Components
@@ -8,8 +10,16 @@ const Container = styled.div`
   display: flex;
   justify-content: flex-start;
   box-sizing: border-box;
-  padding: 10px;
-  width: 500px;
+  padding: 10px 0px 20px 0px;
+  width: ${(props) => (props.isModal ? '100%' : '45%')};
+  @media (max-width: 1120px) {
+    width: 100%;
+  }
+
+  @media (max-width: 800px) {
+    ${(props) =>
+      !props.isModal && props.isLatterEntries ? 'display: none;' : null}
+  }
 `;
 
 export const AvatarNameDateAndReview = styled.div`
@@ -64,20 +74,18 @@ const AverageRating = styled.div`
 `;
 
 const Review = styled.div`
-  display: flex;
-  justify-content: flex-start;
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
 `;
 
-const ReadMore = styled.div`
-  display: flex;
-  justify-content: flex-start;
+const ReadMore = styled.span`
+  white-space: nowrap;
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
   text-decoration: underline;
+  cursor: pointer;
 `;
 
 class ReviewListEntry extends React.Component {
@@ -100,8 +108,10 @@ class ReviewListEntry extends React.Component {
   render() {
     const isModal = this.props.isModal;
 
+    const isLatterEntries = this.props.entryIndex > 2;
+
     return (
-      <Container className="review-list-entry">
+      <Container isModal={isModal} isLatterEntries={isLatterEntries}>
         <AvatarNameDateAndReview>
           <AvatarNameAndDate>
             <AvatarContainer>
@@ -113,7 +123,6 @@ class ReviewListEntry extends React.Component {
               <Date>{this.props.review.dateStr}</Date>
             </NameAndDate>
           </AvatarNameAndDate>
-
           <AverageRating>
             <ProgressBar
               completed={
@@ -123,19 +132,33 @@ class ReviewListEntry extends React.Component {
             {parseFloat(this.props.review.totalRating).toFixed(1)}
           </AverageRating>
 
-          <Review>
-            {this.props.search || !this.state.readMoreButton
-              ? this.props.review.review
-              : this.props.review.review.substring(0, 180) + '...'}
-          </Review>
-          {!this.props.search && this.state.readMoreButton ? (
-            <ReadMore
-              onClick={() => {
-                this.handleReadMore();
-              }}
-            >
-              Read more
-            </ReadMore>
+          {this.props.search ? (
+            <Review>
+              <Highlighter
+                searchWords={[this.props.search]}
+                autoEscape={true}
+                textToHighlight={this.props.review.review}
+              />
+            </Review>
+          ) : null}
+
+          {!this.props.search ? (
+            <Review>
+              {this.state.readMoreButton ? (
+                <>
+                  {this.props.review.review.substring(0, 180) + '... '}
+                  <ReadMore
+                    onClick={() => {
+                      this.handleReadMore();
+                    }}
+                  >
+                    read more
+                  </ReadMore>
+                </>
+              ) : (
+                this.props.review.review
+              )}
+            </Review>
           ) : null}
         </AvatarNameDateAndReview>
       </Container>

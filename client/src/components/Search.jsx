@@ -9,7 +9,8 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 450px;
+  box-sizing: border-box
+  width: 100%;
   height: 20px;
   padding: 12px 12px 12px 16px;
   border-color: rgb(34, 34, 34);
@@ -92,7 +93,7 @@ class Search extends React.Component {
 
   render() {
     return (
-      <div className="search">
+      <div>
         <Container>
           <SearchIconAndBar>
             <SearchIconContainer>{searchIcon}</SearchIconContainer>

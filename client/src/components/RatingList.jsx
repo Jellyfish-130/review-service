@@ -6,26 +6,46 @@ import ProgressBar from './ProgressBar.jsx';
 
 const Container = styled.div`
   display: flex;
-  width: ${(props) => (props.isModal ? '300' : '1120')}px;
   max-height: ${(props) => (props.isModal ? '400' : '120')}px;
 `;
 
 const AllRows = styled.div`
   display: flex;
   font-weight: 400;
-  flex-flow: column wrap;
-  flex-direction: column;
-  padding-top: 10px;
-  height: ${(props) => (props.isModal ? '250' : '150')}px;
+  flex-direction: ${(props) => (props.isModal ? 'column' : 'row')};
+  width: 100%;
+  padding-bottom: 20px;
+  ${(props) => (props.isModal ? null : 'justify-content: space-between')};
+
+  ${(props) =>
+    props.isModal
+      ? '@media (max-width: 1220px) {flex-direction: row; justify-content: space-between;}'
+      : '@media (max-width: 800px) {display: none;}'};
+
+  ${(props) =>
+    props.isModal
+      ? '@media (max-width: 700px) {flex-direction: column; justify-content: flex-start;}'
+      : null};
+`;
+
+const CategorySubcontainer = styled.div`
+  ${(props) => (props.isModal ? 'width: 70%;' : 'width: 45%;')}
+
+  @media (max-width: 1220px) {
+    ${(props) =>
+      props.isModal ? 'width: 40%; min-width: 200px' : 'width: 100%;'}
+  }
+
+  ${(props) =>
+    props.isModal ? '@media (max-width: 700px) {width: 100%;}' : null};
 `;
 
 export const Row = styled.div`
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
-  padding: 10px;
-  width: ${(props) => (props.isModal ? '340' : '500')}px;
-  margin-right: ${(props) => (props.isModal ? '0' : '120')}px;
+  padding: 10px 0px;
+  max-width: 100%;
 `;
 
 const Category = styled.div`
@@ -71,22 +91,49 @@ const RatingList = (props) => {
   const isModal = props.isModal;
 
   return (
-    <Container className="review-list-entry" isModal={isModal}>
+    <Container isModal={isModal}>
       <AllRows isModal={isModal}>
-        {categories.map((category) => (
-          <Row isModal={isModal}>
-            <Category isModal={isModal}> {category.label} </Category>
-            <Rating>
-              <ProgressBar
-                completed={
-                  (parseFloat(props[category.propName]).toFixed(1) / 5) * 100
-                }
-                isModal={isModal}
-              ></ProgressBar>
-              {parseFloat(props[category.propName]).toFixed(1)}
-            </Rating>
-          </Row>
-        ))}
+        <CategorySubcontainer isModal={isModal}>
+          {[0, 1, 2].map((index) => {
+            const category = categories[index];
+            return (
+              <Row isModal={isModal}>
+                <Category isModal={isModal}> {category.label} </Category>
+                <Rating>
+                  <ProgressBar
+                    completed={
+                      (parseFloat(props[category.propName]).toFixed(1) / 5) *
+                      100
+                    }
+                    isModal={isModal}
+                  ></ProgressBar>
+                  {parseFloat(props[category.propName]).toFixed(1)}
+                </Rating>
+              </Row>
+            );
+          })}
+        </CategorySubcontainer>
+
+        <CategorySubcontainer isModal={isModal}>
+          {[3, 4, 5].map((index) => {
+            const category = categories[index];
+            return (
+              <Row isModal={isModal}>
+                <Category isModal={isModal}> {category.label} </Category>
+                <Rating>
+                  <ProgressBar
+                    completed={
+                      (parseFloat(props[category.propName]).toFixed(1) / 5) *
+                      100
+                    }
+                    isModal={isModal}
+                  ></ProgressBar>
+                  {parseFloat(props[category.propName]).toFixed(1)}
+                </Rating>
+              </Row>
+            );
+          })}
+        </CategorySubcontainer>
       </AllRows>
     </Container>
   );

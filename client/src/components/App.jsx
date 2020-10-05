@@ -25,14 +25,15 @@ const GlobalStyle = createGlobalStyle`
 const AppContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  margin-left: 11%;
+  margin-right: 11%;
+  padding: 30px 0px;
 `;
 
 export const ButtonContainer = styled.div`
   display: flex;
   justify-content: start;
-  width: 1120px;
-  padding: 10px;
+  width: 100%;
 `;
 
 const ShowAllButton = styled.div`
@@ -46,6 +47,13 @@ const ShowAllButton = styled.div`
   cursor: pointer;
   &:hover {
     background-color: rgb(247, 247, 247);
+  }
+
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: 800px) {
+    width: 100%;
   }
 `;
 
@@ -74,6 +82,8 @@ class App extends React.Component {
       avglocationRating: 0,
       avgvalueRating: 0,
       avgtotalRating: 0,
+
+      numShown: 6,
     };
 
     this.toggleModalVisibility = this.toggleModalVisibility.bind(this);
@@ -101,7 +111,7 @@ class App extends React.Component {
         }
         this.setState({
           reviews: responseData,
-          reviewsDisplayed: responseData.slice(0, 6),
+          reviewsDisplayed: responseData.slice(0, this.state.numShown),
         });
       },
     });
@@ -115,8 +125,31 @@ class App extends React.Component {
 
   render() {
     return (
-      <AppContainer>
-        <GlobalStyle />
+      <>
+        <AppContainer>
+          <GlobalStyle />
+
+          <TopBar
+            avgtotalRating={this.state.avgtotalRating}
+            reviewsLength={this.state.reviews.length}
+          />
+
+          <RatingList {...this.state} />
+
+          <ReviewList reviewsDisplayed={this.state.reviewsDisplayed} />
+
+          {this.state.reviews.length > this.state.numShown ? (
+            <ButtonContainer>
+              <ShowAllButton
+                onClick={() => {
+                  this.toggleModalVisibility();
+                }}
+              >
+                Show all {this.state.reviews.length} reviews
+              </ShowAllButton>
+            </ButtonContainer>
+          ) : null}
+        </AppContainer>
 
         {this.state.modalVisible ? (
           <Modal
@@ -126,28 +159,7 @@ class App extends React.Component {
             {...this.state}
           ></Modal>
         ) : null}
-
-        <TopBar
-          avgtotalRating={this.state.avgtotalRating}
-          reviewsLength={this.state.reviews.length}
-        />
-
-        <RatingList {...this.state} />
-
-        <ReviewList reviewsDisplayed={this.state.reviewsDisplayed} />
-
-        {this.state.reviews.length > 6 ? (
-          <ButtonContainer>
-            <ShowAllButton
-              onClick={() => {
-                this.toggleModalVisibility();
-              }}
-            >
-              Show all {this.state.reviews.length} reviews
-            </ShowAllButton>
-          </ButtonContainer>
-        ) : null}
-      </AppContainer>
+      </>
     );
   }
 }
