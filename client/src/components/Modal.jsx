@@ -99,7 +99,7 @@ const Content = styled.div`
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
-  padding: 0px 24px;
+  padding: 0px 0px 0px 24px;
   overflow-y: hidden;
 
   @media (max-width: 1220px) {
