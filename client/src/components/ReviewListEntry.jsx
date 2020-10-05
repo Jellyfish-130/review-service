@@ -11,7 +11,7 @@ const Container = styled.div`
   justify-content: flex-start;
   box-sizing: border-box;
   padding: 10px 0px 20px 0px;
-  width: ${(props) => (props.isModal ? '100%' : '40%')};
+  width: ${(props) => (props.isModal ? '100%' : '45%')};
   @media (max-width: 1120px) {
     width: 100%;
   }
@@ -85,6 +85,7 @@ const ReadMore = styled.span`
   font-weight: 600;
   line-height: 24px;
   text-decoration: underline;
+  cursor: pointer;
 `;
 
 class ReviewListEntry extends React.Component {

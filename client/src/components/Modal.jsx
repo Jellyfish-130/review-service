@@ -74,7 +74,7 @@ const Header = styled.div`
   justify-content: start;
   align-items: center;
   box-sizing: border-box;
-  padding: 0px 24px 0px 24px;
+  padding: 15px 24px 15px 24px;
   width: 950px;
   height: 72px;
 `;
@@ -99,8 +99,8 @@ const Content = styled.div`
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
-  padding: 0px 0px 0px 24px;
-  height: 630px;
+  padding: 0px 24px;
+  overflow-y: hidden;
 
   @media (max-width: 1220px) {
     flex-direction: column;
@@ -112,7 +112,6 @@ const LeftContainer = styled.div`
   flex-direction: column;
   justify-content: start;
   width: 40%;
-  height: 100%;
 
   @media (max-width: 450px) {
     width: 100%;

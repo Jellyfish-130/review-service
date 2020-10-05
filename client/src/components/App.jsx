@@ -27,6 +27,7 @@ const AppContainer = styled.div`
   flex-direction: column;
   margin-left: 11%;
   margin-right: 11%;
+  padding: 30px 0px;
 `;
 
 export const ButtonContainer = styled.div`

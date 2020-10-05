@@ -14,21 +14,30 @@ const AllRows = styled.div`
   font-weight: 400;
   flex-direction: ${(props) => (props.isModal ? 'column' : 'row')};
   width: 100%;
+  padding-bottom: 20px;
   ${(props) => (props.isModal ? null : 'justify-content: space-between')};
-  height: ${(props) => (props.isModal ? '250' : '150')}px;
 
   ${(props) =>
     props.isModal
-      ? '@media (max-width: 1120px) {flex-direction: row;}'
-      : '@media (max-width: 800px) {display: none;}'};
+      ? '@media (max-width: 1220px) {flex-direction: row; justify-content: space-between;}'
+      : '@media (max-width: 1220px) {display: none;}'};
+
+  ${(props) =>
+    props.isModal
+      ? '@media (max-width: 700px) {flex-direction: column; justify-content: flex-start;}'
+      : null};
 `;
 
 const CategorySubcontainer = styled.div`
-  width: 100%;
+  ${(props) => (props.isModal ? 'width: 70%;' : 'width: 45%;')}
 
-  @media (max-width: 1120px) {
-    width: 100%;
+  @media (max-width: 1220px) {
+    ${(props) =>
+      props.isModal ? 'width: 40%; min-width: 200px' : 'width: 100%;'}
   }
+
+  ${(props) =>
+    props.isModal ? '@media (max-width: 700px) {width: 100%;}' : null};
 `;
 
 export const Row = styled.div`
@@ -84,7 +93,7 @@ const RatingList = (props) => {
   return (
     <Container isModal={isModal}>
       <AllRows isModal={isModal}>
-        <CategorySubcontainer>
+        <CategorySubcontainer isModal={isModal}>
           {[0, 1, 2].map((index) => {
             const category = categories[index];
             return (
@@ -105,7 +114,7 @@ const RatingList = (props) => {
           })}
         </CategorySubcontainer>
 
-        <CategorySubcontainer>
+        <CategorySubcontainer isModal={isModal}>
           {[3, 4, 5].map((index) => {
             const category = categories[index];
             return (
