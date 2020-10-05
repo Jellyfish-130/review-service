@@ -20,7 +20,7 @@ const AllRows = styled.div`
   ${(props) =>
     props.isModal
       ? '@media (max-width: 1220px) {flex-direction: row; justify-content: space-between;}'
-      : '@media (max-width: 1220px) {display: none;}'};
+      : '@media (max-width: 800px) {display: none;}'};
 
   ${(props) =>
     props.isModal
