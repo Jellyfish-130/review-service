@@ -52,9 +52,8 @@ Shape of data:
 ## Requirements
 
 - Node 6.13.0
-- NPM
-- MongoDB
-- Web browser
+- NPM 6.14.8
+- MongoDB 4.2.8
 
 ## Development
 
