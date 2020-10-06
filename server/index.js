@@ -15,7 +15,7 @@ app.get('/rooms/*', function (req, res) {
   res.sendFile(path.resolve(__dirname + '/../client/dist/index.html'));
 });
 
-app.get('/api/rooms/:roomId/reviews', function (req, res) {
+app.get('/api/rooms/:roomId', function (req, res) {
   Review.find({
     roomId: req.params.roomId,
   })

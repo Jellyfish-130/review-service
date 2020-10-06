@@ -21,11 +21,11 @@ We built a replica of an Airbnb listing by splitting up the 4 main components: p
 
 > Some usage instructions
 
-To get the review component, run http://localhost:3003/rooms/:roomId/reviews with the corresponding roomId.
+To get the review component, run http://localhost:3003/rooms/:roomId with the corresponding roomId.
 
 API endpoints:
 
-- Endpoint: /api/rooms/:roomId/reviews
+- Endpoint: /api/rooms/:roomId
 - HTTP method: GET
 
 Shape of data:
@@ -66,6 +66,5 @@ From within the root directory:
 ### Running the application
 
 - Run MongoDB: mongod --dbpath data
-- Run Mongo: mongo
 - Run Webpack: npm run build:dev
-- Run Express server:npm run start:dev
+- Run Express server: npm run start:dev
