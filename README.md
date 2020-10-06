@@ -66,6 +66,5 @@ From within the root directory:
 ### Running the application
 
 - Run MongoDB: mongod --dbpath data
-- Run Mongo: mongo
 - Run Webpack: npm run build:dev
-- Run Express server:npm run start:dev
+- Run Express server: npm run start:dev
