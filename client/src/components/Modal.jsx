@@ -94,8 +94,18 @@ const CloseContainer = styled.div`
   }
 `;
 
-export const Close = styled.div`
+const Close = styled.div`
   cursor: pointer;
+  @media (max-width: 730px) {
+    display: none;
+  }
+`;
+
+const ArrowClose = styled.div`
+  cursor: pointer;
+  @media (min-width: 730px) {
+    display: none;
+  }
 `;
 
 const Content = styled.div`
@@ -192,8 +202,15 @@ class Modal extends React.Component {
                   this.props.close();
                 }}
               >
-                ✕
+              ✕
               </Close>
+              <ArrowClose
+                onClick={() => {
+                  this.props.close();
+                }}
+              >
+              ＜
+              </ArrowClose>
             </CloseContainer>
           </Header>
 

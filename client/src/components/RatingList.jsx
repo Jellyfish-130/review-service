@@ -29,7 +29,7 @@ const AllRows = styled.div`
 `;
 
 const CategorySubcontainer = styled.div`
-  ${(props) => (props.isModal ? 'width: 70%;' : 'width: 45%;')}
+  ${(props) => (props.isModal ? 'width: 80%;' : 'width: 45%;')}
 
   @media (max-width: 1220px) {
     ${(props) =>
