@@ -13,7 +13,7 @@ const AllRows = styled.div`
   display: flex;
   font-weight: 400;
   flex-direction: ${(props) => (props.isModal ? 'column' : 'row')};
-  width: 100%;
+  width: ${(props) => (props.isModal ? '95%' : '100%')};
   padding-bottom: 20px;
   ${(props) => (props.isModal ? null : 'justify-content: space-between')};
 
@@ -33,7 +33,7 @@ const CategorySubcontainer = styled.div`
 
   @media (max-width: 1220px) {
     ${(props) =>
-      props.isModal ? 'width: 40%; min-width: 200px' : 'width: 100%;'}
+      props.isModal ? 'width: 40%; min-width: 200px' : null}
   }
 
   ${(props) =>
