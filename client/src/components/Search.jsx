@@ -9,9 +9,8 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-sizing: border-box
+  box-sizing: border-box;
   width: 100%;
-  height: 20px;
   padding: 12px 12px 12px 16px;
   border-color: rgb(34, 34, 34);
   box-shadow: rgb(176, 176, 176) 0px 0px 0px 1px inset;
