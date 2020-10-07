@@ -16,6 +16,9 @@ const GlobalStyle = createGlobalStyle`
     color: rgb(34, 34, 34);
     position: relative;
   }
+  body.modal-open {
+    overflow: hidden;
+  }
   input {
     font-family: Circular, -apple-system, system-ui, Roboto;
     color: rgb(34, 34, 34);

@@ -18,7 +18,9 @@ const fadeIn = keyframes`
 `;
 
 const BlackBackground = styled.div`
-  position: absolute;
+  position: fixed;
+  overflow: hidden;
+  overflow-y: hidden;
   top: 0px;
   left: 0px;
   width: 100vw;
@@ -59,6 +61,7 @@ const Container = styled.div`
     width: calc(100% - 80px);
   }
   @media (max-width: 730px) {
+    overflow: hidden;
     width: 100%;
     height: 100%;
     border-radius: 0px;
@@ -91,19 +94,30 @@ const CloseContainer = styled.div`
   }
 `;
 
-export const Close = styled.div`
+const Close = styled.div`
   cursor: pointer;
+  @media (max-width: 730px) {
+    display: none;
+  }
+`;
+
+const ArrowClose = styled.div`
+  cursor: pointer;
+  @media (min-width: 730px) {
+    display: none;
+  }
 `;
 
 const Content = styled.div`
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
-  padding: 0px 0px 0px 24px;
   overflow-y: hidden;
+  padding: 0px 0px 0px 30px;
 
   @media (max-width: 1220px) {
     flex-direction: column;
+    overflow-y: scroll;
   }
 `;
 
@@ -126,11 +140,14 @@ const LeftContainer = styled.div`
 const RightContainer = styled(LeftContainer)`
   justify-content: end;
   width: 60%;
-  padding: 0px 24px;
-  overflow-y: scroll;
+  padding: 0px 5% 0px 0px;
 
   @media (max-width: 1220px) {
-    width: 100%;
+    width: 95%;
+  }
+
+  @media (min-width: 1220px) {
+    overflow-y: scroll;
   }
 `;
 
@@ -143,6 +160,14 @@ class Modal extends React.Component {
     };
 
     this.handleSearch = this.handleSearch.bind(this);
+  }
+
+  componentDidMount() {
+    document.body.classList.add('modal-open');
+  }
+
+  componentWillUnmount() {
+    document.body.classList.remove('modal-open');
   }
 
   handleSearch(input) {
@@ -177,8 +202,15 @@ class Modal extends React.Component {
                   this.props.close();
                 }}
               >
-                ✕
+              ✕
               </Close>
+              <ArrowClose
+                onClick={() => {
+                  this.props.close();
+                }}
+              >
+              ＜
+              </ArrowClose>
             </CloseContainer>
           </Header>
 
