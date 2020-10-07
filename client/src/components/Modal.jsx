@@ -126,6 +126,7 @@ const LeftContainer = styled.div`
 const RightContainer = styled(LeftContainer)`
   justify-content: end;
   width: 60%;
+  padding: 0px 24px;
   overflow-y: scroll;
 
   @media (max-width: 1220px) {
