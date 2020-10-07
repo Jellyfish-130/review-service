@@ -18,6 +18,7 @@ const fadeIn = keyframes`
 `;
 
 const BlackBackground = styled.div`
+  z-index: 1;
   position: fixed;
   overflow: hidden;
   overflow-y: hidden;
