@@ -1,6 +1,6 @@
 version: "3"
 services:
-  web:
+  review-service:
     build: .
     depends_on:
       - db
