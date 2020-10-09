@@ -1,0 +1,12 @@
+version: "3"
+services:
+  web:
+    build: .
+    depends_on:
+      - db
+    ports:
+      - "3003:3003"
+  db:
+    image: mongo:4.2.8
+    volumes:
+      - ./data:/data/db

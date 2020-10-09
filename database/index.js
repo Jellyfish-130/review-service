@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/bookable');
+mongoose.connect('mongodb://db:27017/bookable');
 
 const reviewSchema = mongoose.Schema ({
   username: String,
