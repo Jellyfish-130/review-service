@@ -1,5 +1,9 @@
 version: "3"
 services:
+  proxy:
+    build: ../Catherine-proxy
+    ports:
+      - "3000:3000"
   review-service:
     build: .
     depends_on:
