@@ -160,6 +160,7 @@ class App extends React.Component {
               this.toggleModalVisibility();
             }}
             {...this.state}
+            reviewsLength={this.state.reviews.length}
           ></Modal>
         ) : null}
       </>

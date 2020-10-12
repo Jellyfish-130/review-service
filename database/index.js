@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 mongoose.connect('mongodb://db:27017/bookable');
 
-const reviewSchema = mongoose.Schema ({
+const reviewSchema = mongoose.Schema({
   username: String,
   image: String,
   dateNum: Number,
@@ -15,9 +15,8 @@ const reviewSchema = mongoose.Schema ({
   accuracyRating: Number,
   locationRating: Number,
   valueRating: Number,
-  totalRating: Number
+  totalRating: Number,
 });
-
 
 const Review = mongoose.model('Review', reviewSchema);
 module.exports = Review;

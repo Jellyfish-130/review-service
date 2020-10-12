@@ -16,7 +16,7 @@ export const Title = styled.div`
 
 export const StarIcon = styled.div`
   font-size: ${(props) => (props.isModal ? '30' : '20')}px;
-  color: rgb(237,59,90);
+  color: rgb(237, 59, 90);
   padding: 3px 6px 3px 3px;
 `;
 
