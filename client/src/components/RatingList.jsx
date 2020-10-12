@@ -36,7 +36,7 @@ const CategorySubcontainer = styled.div`
   }
 
   ${(props) =>
-    props.isModal ? '@media (max-width: 700px) {width: 100%;}' : null};
+    props.isModal ? '@media (max-width: 730px) {width: 100%;}' : null};
 `;
 
 export const Row = styled.div`
