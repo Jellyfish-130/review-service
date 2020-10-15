@@ -1,15 +1,10 @@
-# Bookable
+# Jelly-Fish: SDC
 
 > Project description
 
-We built a replica of an Airbnb listing by splitting up the 4 main components: photo-gallery, calender, reviews, and more places to stay. We not only replicated the functionalities of the components, but also styled everything to be nearly identical to Airbnb's stylings.
+This is the back-end system architecture design of an inherited "item detail page" for a housing-rental web application
 
-## Related Projects
-
-- https://github.com/Bookable-130/photo-gallery-service
-- https://github.com/Bookable-130/calendar-service
-- https://github.com/Bookable-130/review-service
-- https://github.com/Bookable-130/more-places-service
+## Related Front-End Projects:
 
 ## Table of Contents
 
@@ -23,15 +18,124 @@ We built a replica of an Airbnb listing by splitting up the 4 main components: p
 
 To get the review component, run http://localhost:3003/rooms/:roomId with the corresponding roomId.
 
-API endpoints:
+## Server API
 
-- Endpoint: /api/rooms/:roomId
-- HTTP method: GET
+### GET all reviews for specific room
+ * GET `/api/rooms/:roomId`
 
-Shape of data:
+** Path Parameters: **
+  * `roomId` Room ID
 
-- Example response:
-  { \_id: 5f77756fe4123b1d8db62729,
+** Success Status Code:** `200`
+
+** Returns:** JSON
+```json
+  {
+  "\_id": "id Number",
+  "username": "String",
+  "image": "image URL",
+  "dateNum": "Number",
+  "dateStr": "String",
+  "review": "String",
+  "roomId": "Number",
+  "cleanlinessRating": "Number",
+  "communicationRating": "Number",
+  "checkInRating": "Number",
+  "accuracyRating": "Number",
+  "locationRating": "Number",
+  "valueRating": "Number",
+  "totalRating": "Number",
+  "\_\_v": "Number",
+  }
+```
+
+### POST new reviews to a specific room
+ * POST `/api/rooms/:roomId`
+
+** Path Parameters: **
+  * `roomId` Room ID
+
+** Success Status Code:** `201`
+
+** Request Body:** Expects JSON with the following keys.
+
+```json
+  {
+  "\_id": "id Number",
+  "username": "String",
+  "image": "image URL",
+  "dateNum": "Number",
+  "dateStr": "String",
+  "review": "String",
+  "roomId": "Number",
+  "cleanlinessRating": "Number",
+  "communicationRating": "Number",
+  "checkInRating": "Number",
+  "accuracyRating": "Number",
+  "locationRating": "Number",
+  "valueRating": "Number",
+  "totalRating": "Number",
+  "\_\_v": "Number",
+  }
+```
+
+### UPDATE reviews list from a specific room
+ * PATCH `/api/rooms/:roomId`
+
+** Path Parameters: **
+  * `roomId` Room ID
+
+** Success Status Code:** `204`
+
+** Request Body:** Expects JSON with any of the following keys (include only keys to be updated)
+
+```json
+  {
+  "\_id": "id Number",
+  "dateNum": "Number",
+  "dateStr": "String",
+  "review": "String",
+  "cleanlinessRating": "Number",
+  "communicationRating": "Number",
+  "checkInRating": "Number",
+  "accuracyRating": "Number",
+  "locationRating": "Number",
+  "valueRating": "Number",
+  "totalRating": "Number",
+  "\_\_v": "Number",
+  }
+```
+
+### DELETE all reviews from a specific room
+* DELETE `/api/rooms/:roomId`
+
+** Path Parameters: **
+  * `roomId` Room ID
+
+** Success Status Code:** `204`
+
+### Requirements
+
+- Node 6.13.0 or `10.15.3`
+- NPM 6.14.8 or `6.4.1`
+- MongoDB `4.2.8`
+
+## Development
+
+### Installing Dependencies
+
+From within the root directory:
+
+- npm install
+
+### Running the application
+
+- Run MongoDB: mongod --dbpath data
+- Run Webpack: npm run build:dev
+- Run Express server: npm run start:dev
+
+
+<!-- { \_id: 5f77756fe4123b1d8db62729,
   username: 'Damon',
   image:
   'https://bookable-hrsf130-photos.s3.us-east-2.amazonaws.com/male-8.jpg',
@@ -47,24 +151,4 @@ Shape of data:
   locationRating: 5,
   valueRating: 4,
   totalRating: 4.5,
-  \_\_v: 0 }
-
-## Requirements
-
-- Node 6.13.0
-- NPM 6.14.8
-- MongoDB 4.2.8
-
-## Development
-
-### Installing Dependencies
-
-From within the root directory:
-
-- npm install
-
-### Running the application
-
-- Run MongoDB: mongod --dbpath data
-- Run Webpack: npm run build:dev
-- Run Express server: npm run start:dev
+  \_\_v: 0 } -->
