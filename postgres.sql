@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS rooms;
 CREATE TABLE IF NOT EXISTS "users" (
   "user_id" SERIAL PRIMARY KEY,
   "username" VARCHAR(50) UNIQUE NOT NULL,
-  "image" VARCHAR(200),
+  "image" VARCHAR(255),
 );
 
 CREATE TABLE IF NOT EXISTS "reviews" (
@@ -22,8 +22,10 @@ CREATE TABLE IF NOT EXISTS "reviews" (
   "description" VARCHAR(750) NOT NULL,
   "room_id" INT,
   "user_id" INT,
+  "scored_id" INT,
   FOREIGN KEY (room_id) REEFERENCES rooms (room_id),
   FOREIGN KEY (user_id) REEFERENCES users (user_id),
+  FOREIGN KEY (scores_id) REEFERENCES scores (scores_id),
 );
 
 CREATE TABLE IF NOT EXISTS "scores" (
@@ -35,6 +37,10 @@ CREATE TABLE IF NOT EXISTS "scores" (
   "locationRating" INT,
   "valueRating" INT,
   "totalRating" DECIMAL,
+  "room_id" INT,
+  "user_id" INT,
+  FOREIGN KEY (room_id) REEFERENCES rooms (room_id),
+  FOREIGN KEY (user_id) REEFERENCES users (user_id),
 );
 
 CREATE TABLE IF NOT EXISTS "rooms" (
