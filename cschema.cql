@@ -9,26 +9,31 @@ CREATE KEYSPACE "reviews_database";
 
 USE "reviews_database";
 
-CREATE TABLE users (
+CREATE TABLE "reviews_by_listing" (
+  review_id int,
+  username text,
+  image text,
+  dateNum date,
+  description text,
+  totalRating decimal,
+  listing_id int,
+  PRIMARY KEY (reviewId, listingId)
+
+);
+
+CREATE TABLE "reviews_by_user" (
   user_id int,
   username text,
   image text,
-  PRIMARY KEY (user_id)
-);
-
-CREATE TABLE reviews (
-  review_id int,
-  dateNum int,
-  dateStr text,
+  dateNum date,
   description text,
-  room_id int,
-  user_id int,
-  scores_id int,
-  PRIMARY KEY (review_id, room_id, user_id, scores_id)
+  totalRating decimal,
+  review_id int,
+  PRIMARY KEY (user_id, review_id)
 );
 
-CREATE TABLE scores (
-  scores_id int,
+CREATE TABLE "scores_by_listing" (
+  score_id int,
   cleanlinessRating smallint,
   communicationRating smallint,
   checkInRating smallint,
@@ -36,14 +41,10 @@ CREATE TABLE scores (
   locationRating smallint,
   valueRating smallint,
   totalRating decimal,
-  room_id int,
+  listing_id,
   user_id int,
-  PRIMARY KEY (scores_id, room_id, user_id)
-);
-
-CREATE TABLE rooms (
-  room_id int PRIMARY KEY,
-  roomNum int,
-);
+  review_id
+  PRIMARY KEY (scores_id, listing_id, user_id, review_id)
+)
 
 WITH CLUSTERING ORDER BY()
