@@ -79,11 +79,10 @@ Returns: JSON
 ```
 
 ### POST new user review to a specific room
- * POST `/api/rooms/:roomId/reviews/:reviewId`
+ * POST `/api/rooms/:roomId/reviews`
 
 Path Parameters:
   * `roomId` Room ID
-  * `reviewId` Review ID
 
 Success Status Code: `201`
 
