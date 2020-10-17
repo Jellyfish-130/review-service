@@ -21,98 +21,121 @@ To get the review component, run http://localhost:3003/rooms/:roomId with the co
 ## Server API
 
 ### GET all reviews for specific room
- * GET `/api/rooms/:roomId`
+ * GET `/api/rooms/:roomId/reviews`
 
-** Path Parameters: **
+Path Parameters:
   * `roomId` Room ID
 
-** Success Status Code:** `200`
+Success Status Code: `200`
 
-** Returns:** JSON
+Returns: JSON
 ```json
+[
   {
-  "\_id": "id Number",
+  "user_id": "Number",
   "username": "String",
-  "image": "image URL",
-  "dateNum": "Number",
-  "dateStr": "String",
-  "review": "String",
-  "roomId": "Number",
+  "image": "String",
+  "review_id": "id Number",
+  "dateNum": "DATE",
+  "description": "String",
+  "roomNum": "Number",
   "cleanlinessRating": "Number",
   "communicationRating": "Number",
   "checkInRating": "Number",
   "accuracyRating": "Number",
-  "locationRating": "Number",
   "valueRating": "Number",
-  "totalRating": "Number",
-  "\_\_v": "Number",
+  "total_rating": "Number",
   }
+]
 ```
 
-### POST new reviews to a specific room
- * POST `/api/rooms/:roomId`
+### GET all reviews for a single user
+ * GET `/api/users/:userId/reviews`
 
-** Path Parameters: **
-  * `roomId` Room ID
+Path Parameters:
+  * `userId` user ID
 
-** Success Status Code:** `201`
+Success Status Code:`200`
 
-** Request Body:** Expects JSON with the following keys.
-
+Returns: JSON
 ```json
+[
   {
-  "\_id": "id Number",
+  "user_id": "Number",
   "username": "String",
-  "image": "image URL",
-  "dateNum": "Number",
-  "dateStr": "String",
-  "review": "String",
-  "roomId": "Number",
+  "image": "String",
+  "review_id": "id Number",
+  "dateNum": "DATE",
+  "description": "String",
+  "roomNum": "Number",
   "cleanlinessRating": "Number",
   "communicationRating": "Number",
   "checkInRating": "Number",
   "accuracyRating": "Number",
-  "locationRating": "Number",
   "valueRating": "Number",
-  "totalRating": "Number",
-  "\_\_v": "Number",
+  "total_rating": "Number",
   }
+]
 ```
 
-### UPDATE reviews list from a specific room
- * PATCH `/api/rooms/:roomId`
+### POST new user review to a specific room
+ * POST `/api/rooms/:roomId/reviews`
 
-** Path Parameters: **
+Path Parameters:
   * `roomId` Room ID
 
-** Success Status Code:** `204`
+Success Status Code: `201`
 
-** Request Body:** Expects JSON with any of the following keys (include only keys to be updated)
+Request Body: Expects JSON with the following keys.
 
 ```json
   {
-  "\_id": "id Number",
-  "dateNum": "Number",
-  "dateStr": "String",
-  "review": "String",
+  "username": "String",
+  "image": "String",
+  "dateNum": "DATE",
+  "description": "String",
+  "roomNum": "Number",
   "cleanlinessRating": "Number",
   "communicationRating": "Number",
   "checkInRating": "Number",
   "accuracyRating": "Number",
-  "locationRating": "Number",
   "valueRating": "Number",
-  "totalRating": "Number",
-  "\_\_v": "Number",
+  "total_rating": "Number",
   }
 ```
 
-### DELETE all reviews from a specific room
-* DELETE `/api/rooms/:roomId`
+### UPDATE one review from a specific room
+ * PATCH `/api/rooms/:roomId/reviews/:reviewId`
 
-** Path Parameters: **
+Path Parameters:
   * `roomId` Room ID
+  * `reviewId` Review ID
 
-** Success Status Code:** `204`
+Success Status Code:`204`
+
+Request Body: Expects JSON with any of the following keys (include only keys to be updated)
+
+```json
+  {
+  "dateNum": "DATE",
+  "description": "String",
+  "cleanlinessRating": "Number",
+  "communicationRating": "Number",
+  "checkInRating": "Number",
+  "accuracyRating": "Number",
+  "valueRating": "Number",
+  "total_rating": "Number",
+  }
+```
+
+### DELETE reviews from a specific room
+* DELETE `/api/rooms/:roomId/reviews/:reviewId`
+
+Path Parameters:
+  * `roomId` Room ID
+  * `reviewId` Review ID
+
+Success Status Code: `204`
 
 ### Requirements
 
