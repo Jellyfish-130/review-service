@@ -30,16 +30,15 @@ Success Status Code: `200`
 
 Returns: JSON
 ```json
+[
   {
   "user_id": "Number",
   "username": "String",
   "image": "String",
   "review_id": "id Number",
-  "dateNum": "Number",
-  "dateStr": "String",
+  "dateNum": "DATE",
   "description": "String",
   "roomNum": "Number",
-  "scores_id": "Number",
   "cleanlinessRating": "Number",
   "communicationRating": "Number",
   "checkInRating": "Number",
@@ -47,10 +46,11 @@ Returns: JSON
   "valueRating": "Number",
   "total_rating": "Number",
   }
+]
 ```
 
 ### GET all reviews for a single user
- * GET `/api/users/reviews/:userId`
+ * GET `/api/users/:userId/reviews`
 
 Path Parameters:
   * `userId` user ID
@@ -59,16 +59,15 @@ Success Status Code:`200`
 
 Returns: JSON
 ```json
+[
   {
   "user_id": "Number",
   "username": "String",
   "image": "String",
   "review_id": "id Number",
-  "dateNum": "Number",
-  "dateStr": "String",
+  "dateNum": "DATE",
   "description": "String",
   "roomNum": "Number",
-  "scores_id": "Number",
   "cleanlinessRating": "Number",
   "communicationRating": "Number",
   "checkInRating": "Number",
@@ -76,14 +75,15 @@ Returns: JSON
   "valueRating": "Number",
   "total_rating": "Number",
   }
+]
 ```
 
 ### POST new user review to a specific room
- * POST `/api/rooms/:roomId/reviews/:userId`
+ * POST `/api/rooms/:roomId/reviews/:reviewId`
 
 Path Parameters:
   * `roomId` Room ID
-  * `userId` user ID
+  * `reviewId` Review ID
 
 Success Status Code: `201`
 
@@ -91,15 +91,11 @@ Request Body: Expects JSON with the following keys.
 
 ```json
   {
-  "user_id": "Number",
   "username": "String",
   "image": "String",
-  "review_id": "id Number",
-  "dateNum": "Number",
-  "dateStr": "String",
+  "dateNum": "DATE",
   "description": "String",
   "roomNum": "Number",
-  "scores_id": "Number",
   "cleanlinessRating": "Number",
   "communicationRating": "Number",
   "checkInRating": "Number",
@@ -110,11 +106,11 @@ Request Body: Expects JSON with the following keys.
 ```
 
 ### UPDATE one review from a specific room
- * PATCH `/api/rooms/:roomId/reviews/:userId`
+ * PATCH `/api/rooms/:roomId/reviews/:reviewId`
 
 Path Parameters:
   * `roomId` Room ID
-  * `userId` user ID
+  * `reviewId` Review ID
 
 Success Status Code:`204`
 
@@ -122,10 +118,8 @@ Request Body: Expects JSON with any of the following keys (include only keys to 
 
 ```json
   {
-  "dateNum": "Number",
-  "dateStr": "String",
+  "dateNum": "DATE",
   "description": "String",
-  "scores_id": "Number",
   "cleanlinessRating": "Number",
   "communicationRating": "Number",
   "checkInRating": "Number",
@@ -135,12 +129,12 @@ Request Body: Expects JSON with any of the following keys (include only keys to 
   }
 ```
 
-### DELETE all reviews from a specific room
-* DELETE `/api/:roomId/reviews/:userId`
+### DELETE reviews from a specific room
+* DELETE `/api/rooms/:roomId/reviews/:reviewId`
 
 Path Parameters:
   * `roomId` Room ID
-  * `userId` Room ID
+  * `reviewId` Review ID
 
 Success Status Code: `204`
 
