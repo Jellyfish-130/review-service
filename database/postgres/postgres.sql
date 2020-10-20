@@ -10,6 +10,8 @@ DROP TABLE IF EXISTS rooms;
 
 CREATE TABLE IF NOT EXISTS "users" (
   "user_id" SERIAL PRIMARY KEY,
+  "firstName": VARCHAR(50),
+  "lastName": VARCHAR(50),
   "username" VARCHAR(50) UNIQUE NOT NULL,
   "image" VARCHAR(255),
 );
@@ -34,4 +36,5 @@ CREATE TABLE IF NOT EXISTS "reviews" (
 CREATE TABLE IF NOT EXISTS "rooms" (
   "room_id" SERIAL PRIMARY KEY,
   "roomNum": INT,
+  "roomType": VARCHAR(25),
 ),
