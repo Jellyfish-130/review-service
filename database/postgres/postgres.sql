@@ -51,22 +51,22 @@ COPY rooms ("room_id", "roomNum", "roomType") FROM '/Users/jacobjohnsonrr/HRSF13
 COPY reviews ("review_id", "dateNum", "description", "cleanlinessRating", "communicationRating", "checkInRating", "accuracyRating", "locationRating", "valueRating", "totalRating", "room_id", "user_id") FROM '/Users/jacobjohnsonrr/HRSF130/SDC/review-service/database/postgres/CSV/reviews.csv' WITH CSV HEADER DELIMITER ',';
 -- 2
 COPY reviews ("review_id", "dateNum", "description", "cleanlinessRating", "communicationRating", "checkInRating", "accuracyRating", "locationRating", "valueRating", "totalRating", "room_id", "user_id") FROM '/Users/jacobjohnsonrr/HRSF130/SDC/review-service/database/postgres/CSV/reviews2.csv' WITH CSV HEADER DELIMITER ',';
--- -- 3
--- COPY reviews ("review_id", "dateNum", "description", "cleanlinessRating", "communicationRating", "checkInRating", "accuracyRating", "locationRating", "valueRating", "totalRating", "room_id", "user_id") FROM '/Users/jacobjohnsonrr/HRSF130/SDC/review-service/database/postgres/CSV/reviews3.csv' WITH CSV HEADER DELIMITER ',';
--- -- 4
--- COPY reviews ("review_id", "dateNum", "description", "cleanlinessRating", "communicationRating", "checkInRating", "accuracyRating", "locationRating", "valueRating", "totalRating", "room_id", "user_id") FROM '/Users/jacobjohnsonrr/HRSF130/SDC/review-service/database/postgres/CSV/reviews4.csv' WITH CSV HEADER DELIMITER ',';
--- -- 5
--- COPY reviews ("review_id", "dateNum", "description", "cleanlinessRating", "communicationRating", "checkInRating", "accuracyRating", "locationRating", "valueRating", "totalRating", "room_id", "user_id") FROM '/Users/jacobjohnsonrr/HRSF130/SDC/review-service/database/postgres/CSV/reviews5.csv' WITH CSV HEADER DELIMITER ',';
--- -- 6
--- COPY reviews ("review_id", "dateNum", "description", "cleanlinessRating", "communicationRating", "checkInRating", "accuracyRating", "locationRating", "valueRating", "totalRating", "room_id", "user_id") FROM '/Users/jacobjohnsonrr/HRSF130/SDC/review-service/database/postgres/CSV/reviews6.csv' WITH CSV HEADER DELIMITER ',';
--- -- 7
--- COPY reviews ("review_id", "dateNum", "description", "cleanlinessRating", "communicationRating", "checkInRating", "accuracyRating", "locationRating", "valueRating", "totalRating", "room_id", "user_id") FROM '/Users/jacobjohnsonrr/HRSF130/SDC/review-service/database/postgres/CSV/reviews7.csv' WITH CSV HEADER DELIMITER ',';
--- -- 8
--- COPY reviews ("review_id", "dateNum", "description", "cleanlinessRating", "communicationRating", "checkInRating", "accuracyRating", "locationRating", "valueRating", "totalRating", "room_id", "user_id") FROM '/Users/jacobjohnsonrr/HRSF130/SDC/review-service/database/postgres/CSV/reviews8.csv' WITH CSV HEADER DELIMITER ',';
--- -- 9
--- COPY reviews ("review_id", "dateNum", "description", "cleanlinessRating", "communicationRating", "checkInRating", "accuracyRating", "locationRating", "valueRating", "totalRating", "room_id", "user_id") FROM '/Users/jacobjohnsonrr/HRSF130/SDC/review-service/database/postgres/CSV/reviews9.csv' WITH CSV HEADER DELIMITER ',';
--- -- 10
--- COPY reviews ("review_id", "dateNum", "description", "cleanlinessRating", "communicationRating", "checkInRating", "accuracyRating", "locationRating", "valueRating", "totalRating", "room_id", "user_id") FROM '/Users/jacobjohnsonrr/HRSF130/SDC/review-service/database/postgres/CSV/reviews10.csv' WITH CSV HEADER DELIMITER ',';
+-- 3
+COPY reviews ("review_id", "dateNum", "description", "cleanlinessRating", "communicationRating", "checkInRating", "accuracyRating", "locationRating", "valueRating", "totalRating", "room_id", "user_id") FROM '/Users/jacobjohnsonrr/HRSF130/SDC/review-service/database/postgres/CSV/reviews3.csv' WITH CSV HEADER DELIMITER ',';
+-- 4
+COPY reviews ("review_id", "dateNum", "description", "cleanlinessRating", "communicationRating", "checkInRating", "accuracyRating", "locationRating", "valueRating", "totalRating", "room_id", "user_id") FROM '/Users/jacobjohnsonrr/HRSF130/SDC/review-service/database/postgres/CSV/reviews4.csv' WITH CSV HEADER DELIMITER ',';
+-- 5
+COPY reviews ("review_id", "dateNum", "description", "cleanlinessRating", "communicationRating", "checkInRating", "accuracyRating", "locationRating", "valueRating", "totalRating", "room_id", "user_id") FROM '/Users/jacobjohnsonrr/HRSF130/SDC/review-service/database/postgres/CSV/reviews5.csv' WITH CSV HEADER DELIMITER ',';
+-- 6
+COPY reviews ("review_id", "dateNum", "description", "cleanlinessRating", "communicationRating", "checkInRating", "accuracyRating", "locationRating", "valueRating", "totalRating", "room_id", "user_id") FROM '/Users/jacobjohnsonrr/HRSF130/SDC/review-service/database/postgres/CSV/reviews6.csv' WITH CSV HEADER DELIMITER ',';
+-- 7
+COPY reviews ("review_id", "dateNum", "description", "cleanlinessRating", "communicationRating", "checkInRating", "accuracyRating", "locationRating", "valueRating", "totalRating", "room_id", "user_id") FROM '/Users/jacobjohnsonrr/HRSF130/SDC/review-service/database/postgres/CSV/reviews7.csv' WITH CSV HEADER DELIMITER ',';
+-- 8
+COPY reviews ("review_id", "dateNum", "description", "cleanlinessRating", "communicationRating", "checkInRating", "accuracyRating", "locationRating", "valueRating", "totalRating", "room_id", "user_id") FROM '/Users/jacobjohnsonrr/HRSF130/SDC/review-service/database/postgres/CSV/reviews8.csv' WITH CSV HEADER DELIMITER ',';
+-- 9
+COPY reviews ("review_id", "dateNum", "description", "cleanlinessRating", "communicationRating", "checkInRating", "accuracyRating", "locationRating", "valueRating", "totalRating", "room_id", "user_id") FROM '/Users/jacobjohnsonrr/HRSF130/SDC/review-service/database/postgres/CSV/reviews9.csv' WITH CSV HEADER DELIMITER ',';
+-- 10
+COPY reviews ("review_id", "dateNum", "description", "cleanlinessRating", "communicationRating", "checkInRating", "accuracyRating", "locationRating", "valueRating", "totalRating", "room_id", "user_id") FROM '/Users/jacobjohnsonrr/HRSF130/SDC/review-service/database/postgres/CSV/reviews10.csv' WITH CSV HEADER DELIMITER ',';
 
 
 

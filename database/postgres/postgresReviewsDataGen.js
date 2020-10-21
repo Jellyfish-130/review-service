@@ -10,10 +10,24 @@ const createCsvWriter = require("csv-writer").createObjectCsvWriter;
 const review = () => {
   let reviews = [];
 
-  for (let i = 0; i < 2500000; i++) {
+  /*
+  CSV FILE INCREMENTS
+  rev1 = 0 < 2.5MM
+  rev2 = 2.5MM < 5MM
+  rev3 = 5MM < 7.5MM
+  rev4 = 7.5MM < 10MM
+  rev5 = 10MM < 12.5MM
+  rev6 = 12.5MM < 15MM
+  rev7 = 15MM < 17.5MM
+  rev8 = 17.5MM < 20MM
+  rev9 = 20MM < 22.5MM
+  rev10 = 22.5MM < 25MM
+  */
+
+  for (let i = 22500000; i < 25000000; i++) {
 
     //provide useful console log statements for seeding levels completed
-    if ( i === 1000 || i === 10000 || i === 50000 || i === 100000 || i === 250000 || i === 500000|| i === 750000 || i === 1000000 || i === 1500000 || i === 2000000 ) {
+    if ( i === 10000 || i === 50000 || i === 100000 || i === 250000 || i === 500000|| i === 1000000 || i === 2500000 || i === 5000000 || i === 10000000 || i === 15000000 || i === 20000000 || i === 25000000 ) {
       console.log(`Seeded ${i} Records`);
     }
 
@@ -39,7 +53,7 @@ const review = () => {
 };
 
 const csvWriter = createCsvWriter({
-  path: "../postgres/CSV/reviews.csv",
+  path: "../postgres/CSV/reviews10.csv",
   header: [
     {id: 'review_id', title: 'review_id'},
     {id: 'dateNum', title: 'dateNum'},
