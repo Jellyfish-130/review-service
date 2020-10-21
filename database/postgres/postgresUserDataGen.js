@@ -12,10 +12,10 @@ let sex = sexes[Math.floor(Math.random() * 2)];
 const user = () => {
   let users = [];
 
-  for (let i = 0; i < 10000; i++) {
+  for (let i = 5000000; i < 10000000; i++) {
 
   //provide useful console log statements for seeding levels completed
-  if ( i === 50 || i === 1000 || i === 10000 || i === 15000 || i === 100000 || i === 150000|| i === 200000 ) {
+  if ( i === 1000 || i === 10000 || i === 50000 || i === 100000 || i === 250000 || i === 500000|| i === 750000 || i === 1000000 || i === 1500000 || i === 2000000 ) {
     console.log(`Seeded ${i} Records`);
   }
 
@@ -32,7 +32,7 @@ const user = () => {
 };
 
 const csvWriter = createCsvWriter({
-  path: "../postgres/CSV/users.csv",
+  path: "../postgres/CSV/users2.csv",
   header: [
     {id: 'user_id', title: 'user_id'},
     {id: 'firstName', title: 'firstName'},

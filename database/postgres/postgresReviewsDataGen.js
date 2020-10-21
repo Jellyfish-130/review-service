@@ -10,10 +10,10 @@ const createCsvWriter = require("csv-writer").createObjectCsvWriter;
 const review = () => {
   let reviews = [];
 
-  for (let i = 0; i < 10000; i++) {
+  for (let i = 0; i < 2500000; i++) {
 
     //provide useful console log statements for seeding levels completed
-    if ( i === 1000 || i === 10000 || i === 50000 || i === 100000 || i === 250000 || i === 500000|| i === 750000 || i === 1000000 || i === 1500000 ) {
+    if ( i === 1000 || i === 10000 || i === 50000 || i === 100000 || i === 250000 || i === 500000|| i === 750000 || i === 1000000 || i === 1500000 || i === 2000000 ) {
       console.log(`Seeded ${i} Records`);
     }
 
@@ -27,8 +27,8 @@ const review = () => {
       accuracyRating: Math.floor(Math.random() * 2) + 4,
       locationRating: Math.floor(Math.random() * 2) + 4,
       valueRating: Math.floor(Math.random() * 2) + 4,
-      room_id: Math.floor(Math.random() * 1750) + 1,
-      user_id: Math.floor(Math.random() * 9000) + 1,
+      room_id: Math.floor(Math.random() * 2499999) + 1,
+      user_id: Math.floor(Math.random() * 9999999) + 1,
       // totalRating: 0,
     };
     entry.totalRating = ((entry.cleanlinessRating + entry.communicationRating + entry.checkInRating + entry.accuracyRating + entry.locationRating + entry.valueRating) / 6).toFixed(2);
@@ -66,6 +66,6 @@ csvWriter.writeRecords(reviewBuild)
 
   //SANDBOX
   // node --max-old-space-size=4096 postgresReviewsDataGen.js
-  // Tested Limit: 2 Million review records seeded successfully - 625.3 MB
-  // Tested Limit: 2 Million review records seeded successfully - 671.6 MB
+  // Tested Limit: 2 Million review records seeded successfully - void
+  // Tested Limit: 2.5 Million review records seeded successfully - 578.1 MB
   // Tested Limit: [BROKEN] 3 Million review records seed failure
