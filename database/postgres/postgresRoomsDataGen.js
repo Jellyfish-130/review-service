@@ -3,7 +3,7 @@
 const faker = require('faker');
 const createCsvWriter = require("csv-writer").createObjectCsvWriter;
 
-const room = (num) => {
+const room = () => {
   let rooms = [];
 
   const descType = [
@@ -22,10 +22,16 @@ const room = (num) => {
     'Entire Cabin',
   ];
 
-  for (let i = 0; i < num; i++) {
+  for (let i = 0; i < 2000; i++) {
+    //provide useful console log statements for seeding levels completed
+    if ( i === 50 || i === 1000 || i === 10000 || i === 15000 || i === 100000 || i === 150000|| i === 200000 ) {
+     console.log(`Seeded ${i} Records`);
+   }
+
+
     let entry = {
       room_id: i,
-      roomNum: Math.floor(Math.random() * 1000000) + 1,
+      roomNum: Math.floor(Math.random() * 20000) + 1,
       roomType: descType[Math.floor(Math.random() * descType.length)]
     };
     rooms.push(entry);
@@ -42,10 +48,10 @@ const csvWriter = createCsvWriter({
   ],
 })
 
-let roomBuild = room(10);
+let roomBuild = room();
 
 csvWriter.writeRecords(roomBuild)
-  .then(() => {
-    console.log("Done writing first 10 records for ROOMS!")
-});
+  .then(() => {console.log("Done writing records for ROOMS!")}
+  // .catch(err => console.log(err))
+  );
 

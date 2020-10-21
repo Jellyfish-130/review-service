@@ -5,12 +5,20 @@ const faker = require('faker');
 const createCsvWriter = require("csv-writer").createObjectCsvWriter;
 // const csvWriter = require('csv-write-stream');
 // const writer = csvWriter();
+
 let sexes = ['female', 'male'];
 let sex = sexes[Math.floor(Math.random() * 2)];
-const user = (num) => {
+
+const user = () => {
   let users = [];
 
-  for (let i = 0; i < num; i++) {
+  for (let i = 0; i < 10000; i++) {
+
+  //provide useful console log statements for seeding levels completed
+  if ( i === 50 || i === 1000 || i === 10000 || i === 15000 || i === 100000 || i === 150000|| i === 200000 ) {
+    console.log(`Seeded ${i} Records`);
+  }
+
     let entry = {
       user_id: i,
       firstName: faker.name.firstName(),
@@ -34,10 +42,10 @@ const csvWriter = createCsvWriter({
   ],
 })
 
-let userBuild = user(10);
+let userBuild = user();
 
 csvWriter.writeRecords(userBuild)
-  .then(() => {
-    console.log("Done writing first 10 records for USERS!")
-});
+  .then(() => {console.log("Done writing records for USERS!")}
+  // .catch(err => console.log(err))
+);
 
