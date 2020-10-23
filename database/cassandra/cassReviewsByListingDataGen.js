@@ -12,7 +12,7 @@ let sex = sexes[Math.floor(Math.random() * 2)];
 const reviews_by_listing = () => {
   let reviews = [];
 
-  for (let i = 0; i < 100000; i++) {
+  for (let i = 0; i < 2500000; i++) {
 
   //provide useful console log statements for seeding levels completed
   if ( i === 1000 || i === 10000 || i === 50000 || i === 100000 || i === 250000 || i === 500000|| i === 750000 || i === 1000000 || i === 1500000 || i === 2000000 ) {
@@ -24,7 +24,7 @@ const reviews_by_listing = () => {
 
     let entry = {
       listing_id: i,
-      review_id: Math.floor(Math.random() * 99999) + 1,
+      review_id: Math.floor(Math.random() * 24999999) + 1,
       username: faker.internet.userName(),
       image: `https://bookable-hrsf130-photos.s3.us-east-2.amazonaws.com/${sex}-${Math.floor(Math.random() * 50) + 1}.jpg`,
       dateNum: faker.date.past(),
