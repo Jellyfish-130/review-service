@@ -12,7 +12,7 @@ let sex = sexes[Math.floor(Math.random() * 2)];
 const reviews_by_user = () => {
   let users = [];
 
-  for (let i = 0; i < 25000; i++) {
+  for (let i = 24000000; i < 26000000; i++) {
 
   //provide useful console log statements for seeding levels completed
   if ( i === 1000 || i === 10000 || i === 50000 || i === 100000 || i === 250000 || i === 500000|| i === 750000 || i === 1000000 || i === 1500000 || i === 2000000 ) {
@@ -24,7 +24,7 @@ const reviews_by_user = () => {
 
     let entry = {
       user_id: i,
-      review_id: Math.floor(Math.random() * 99999) + 1,
+      review_id: Math.floor(Math.random() * 24999999) + 1,
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
       username: faker.internet.userName(),
@@ -47,7 +47,7 @@ const reviews_by_user = () => {
 };
 
 const csvWriter = createCsvWriter({
-  path: "../cassandra/CSV/reviewsByUser.csv",
+  path: "../cassandra/CSV/reviewsByUser13.csv",
   header: [
     {id: 'user_id', title: 'user_id'},
     {id: 'review_id', title: 'review_id'},

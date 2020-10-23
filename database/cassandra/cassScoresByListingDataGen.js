@@ -9,7 +9,7 @@ const createCsvWriter = require("csv-writer").createObjectCsvWriter;
 const scores_by_listing = () => {
   let scores = [];
 
-  for (let i = 0; i < 100000; i++) {
+  for (let i = 20000000; i < 25000000; i++) {
 
   //provide useful console log statements for seeding levels completed
   if ( i === 1000 || i === 10000 || i === 50000 || i === 100000 || i === 250000 || i === 500000|| i === 750000 || i === 1000000 || i === 1500000 || i === 2000000 ) {
@@ -17,8 +17,8 @@ const scores_by_listing = () => {
   }
 
     let entry = {
-      listing_id: i,
-      score_id: Math.floor(Math.random() * 99999) + 1,
+      score_id: i,
+      listing_id: Math.floor(Math.random() * 2499999) + 1,
       cleanlinessRating: Math.floor(Math.random() * 2) + 4,
       communicationRating: Math.floor(Math.random() * 2) + 4,
       checkInRating: Math.floor(Math.random() * 2) + 4,
@@ -26,8 +26,8 @@ const scores_by_listing = () => {
       locationRating: Math.floor(Math.random() * 2) + 4,
       valueRating: Math.floor(Math.random() * 2) + 4,
       //WORK ON THESE TWO BELOW TOMORROW AM
-      user_id: Math.floor(Math.random() * 24999) + 1,
-      review_id: Math.floor(Math.random() * 99999) + 1,
+      user_id: Math.floor(Math.random() * 9999999) + 1,
+      review_id: i,
     };
 
     entry.totalRating = ((entry.cleanlinessRating + entry.communicationRating + entry.checkInRating + entry.accuracyRating + entry.locationRating + entry.valueRating) / 6).toFixed(2);
@@ -38,10 +38,10 @@ const scores_by_listing = () => {
 };
 
 const csvWriter = createCsvWriter({
-  path: "../cassandra/CSV/scoresByListing.csv",
+  path: "../cassandra/CSV/scoresByListing4.csv",
   header: [
-    {id: 'listing_id', title: 'listing_id'},
     {id: 'score_id', title: 'score_id'},
+    {id: 'listing_id', title: 'listing_id'},
     {id: 'cleanlinessRating', title: 'cleanlinessRating'},
     {id: 'communicationRating', title: 'communicationRating'},
     {id: 'checkInRating', title: 'checkInRating'},
