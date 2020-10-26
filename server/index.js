@@ -57,28 +57,41 @@ app.post('/api/rooms/:roomId/reviews', (req, res) => {
   console.log ('PARAM CHECK: ', req.params);
   console.log('BODY CHECK: ', req.body);
 
-    const review_id = req.body.review_id;
-    const dateNum = req.body.dateNum;
-    const description = req.body.description;
-    const cleanlinessRating = req.body.cleanlinessRating;
-    const communicationRating = req.body.communicationRating;
-    const checkInRating = req.body.checkInRating;
-    const accuracyRating = req.body.accuracyRating;
-    const locationRating = req.body.locationRating;
-    const valueRating = req.body.valueRating;
-    const totalRating = req.body.totalRating;
-    const room_id = req.body.room_id;
-    const user_id = req.body.user_id;
+  // POST Request configuration for Postman Local testing
+    // const dateNum = req.body.dateNum;
+    // const description = req.body.description;
+    // const cleanlinessRating = req.body.cleanlinessRating;
+    // const communicationRating = req.body.communicationRating;
+    // const checkInRating = req.body.checkInRating;
+    // const accuracyRating = req.body.accuracyRating;
+    // const locationRating = req.body.locationRating;
+    // const valueRating = req.body.valueRating;
+    // const totalRating = req.body.totalRating;
+    // const room_id = Number(req.params.roomId); //req.body.room_id
+    // const user_id = req.body.user_id;
+
+// POST request configuration for K6 Testing
+    const dateNum = 'Sat Oct 31 2020 12:12:12 GMT-0700 (Pacific Daylight Time)';
+    const description = 'POST DESCRIPTION DURING K6 LOCAL STESS TESTING';
+    const cleanlinessRating = Math.floor(Math.random() * 2) + 4;
+    const communicationRating = Math.floor(Math.random() * 2) + 4;
+    const checkInRating = Math.floor(Math.random() * 2) + 4;
+    const accuracyRating = Math.floor(Math.random() * 2) + 4;
+    const locationRating = Math.floor(Math.random() * 2) + 4;
+    const valueRating = Math.floor(Math.random() * 2) + 4;
+    const totalRating = ((cleanlinessRating + communicationRating + checkInRating + accuracyRating + locationRating + valueRating) / 6).toFixed(2);
+    const room_id = Number(req.params.roomId); //req.body.room_id
+    const user_id = Math.floor(Math.random() * 99999) + 1;
 
 
-  const postQuery = `INSERT INTO public."reviews" ("review_id", "dateNum", "description", "cleanlinessRating", "communicationRating", "checkInRating", "accuracyRating", "locationRating", "valueRating", "totalRating", "room_id", "user_id") VALUES ('${review_id}', '${dateNum}', '${description}', '${cleanlinessRating}', '${communicationRating}', '${checkInRating}', '${accuracyRating}', '${locationRating}', '${valueRating}', '${totalRating}', '${room_id}', '${user_id}')`
+  const postQuery = `INSERT INTO public."reviews" ("dateNum", "description", "cleanlinessRating", "communicationRating", "checkInRating", "accuracyRating", "locationRating", "valueRating", "totalRating", "room_id", "user_id") VALUES ('${dateNum}', '${description}', ${cleanlinessRating}, ${communicationRating}, ${checkInRating}, ${accuracyRating}, ${locationRating}, ${valueRating}, ${totalRating}, ${room_id}, ${user_id})`
 
    client.query(postQuery, (err, results) => {
      if (err) {
-       console.log('Bad POST Request');
+       console.log(err);
        res.status(400).send();
      } else {
-       console.log('Successful POST request from Server');
+       console.log('Successful POST Request!');
        res.status(200).send()
      }
    })
