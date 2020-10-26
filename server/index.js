@@ -57,19 +57,6 @@ app.post('/api/rooms/:roomId/reviews', (req, res) => {
   console.log ('PARAM CHECK: ', req.params);
   console.log('BODY CHECK: ', req.body);
 
-  // POST Request configuration for Postman Local testing
-    // const dateNum = req.body.dateNum;
-    // const description = req.body.description;
-    // const cleanlinessRating = req.body.cleanlinessRating;
-    // const communicationRating = req.body.communicationRating;
-    // const checkInRating = req.body.checkInRating;
-    // const accuracyRating = req.body.accuracyRating;
-    // const locationRating = req.body.locationRating;
-    // const valueRating = req.body.valueRating;
-    // const totalRating = req.body.totalRating;
-    // const room_id = Number(req.params.roomId); //req.body.room_id
-    // const user_id = req.body.user_id;
-
 // POST request configuration for K6 Testing
     const dateNum = 'Sat Oct 31 2020 12:12:12 GMT-0700 (Pacific Daylight Time)';
     const description = 'POST DESCRIPTION DURING K6 LOCAL STESS TESTING';
@@ -99,53 +86,22 @@ app.post('/api/rooms/:roomId/reviews', (req, res) => {
 
 // =========== UPDATE A SPECIFIC REVIEW FOR A SPECIFIC LISTING ============
 // --> /api/rooms/:roomId/reviews/:reviewId
-app.patch('/', (req, res) => {
-
-  const getAll = 'SELECT * FROM reviews limit 2';
-  console.log('GET REQUEST TEST: ');
-  client.query(getAll, (err, results) => {
-    if (err) {
-      res.status(400).send();
-    } else {
-      console.log('successful GetAll request from Server');
-      res.status(200).send(results)
-    }
-  })
+app.patch('/api/rooms/:roomId/reviews/:reviewId', (req, res) => {
+  // To be completed at later date
 })
 
 
-// ============== DELETE api/rooms/:roomId/reviews/:reviewId ==============
+// ============== DELETE A SPECIFIC REVIEW FOR A SPECIFIC ROOM ==============
+// api/rooms/:roomId/reviews/:reviewId
 app.delete('api/rooms/:roomId/reviews/:reviewId', (req, res) => {
-
-  const deleteCheck = req.params.roomId;
-  const deletePut = req.params.reviewId;
-
-  console.log('Delete check: ', deleteCheck, deletePut);
-
-  // const getAll = 'SELECT * FROM reviews limit 2';
-  // console.log('GET REQUEST TEST: ');
-  // client.query(getAll, (err, results) => {
-  //   if (err) {
-  //     res.status(400).send();
-  //   } else {
-  //     console.log('successful GetAll request from Server');
-  //     res.status(200).send(results)
-  //   }
-  // })
+  // To be completed at later date
 })
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`)
 })
 
-
-
-
-
-
-
-
-// =======================================
+// ================= LEGACY CODE ======================
 
 // const express = require('express');
 // const path = require('path');
