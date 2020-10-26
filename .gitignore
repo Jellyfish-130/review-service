@@ -29,3 +29,6 @@ data
 # Seeded CSV files
 database/postgres/CSV
 
+#newrelic
+newrelic.js
+
